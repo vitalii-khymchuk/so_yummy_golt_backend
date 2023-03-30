@@ -1,6 +1,7 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
+const { errorHandler } = require('@middlewares')
 
 const app = express()
 
@@ -16,10 +17,7 @@ app.use((req, res) => {
   res.status(404).json({ code: 404, message: 'Not found' })
 })
 
-app.use((err, req, res, next) => {
-  console.log(err)
-  const { status = 500, message = 'Internal server error' } = err
-  res.status(status).json({ code: status, message })
-})
+// global error handler
+app.use(errorHandler)
 
 module.exports = app
