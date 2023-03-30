@@ -3,6 +3,8 @@ const logger = require('morgan')
 const cors = require('cors')
 const { errorHandler } = require('@middlewares')
 
+require('colors')
+
 const app = express()
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
