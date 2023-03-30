@@ -1,3 +1,3 @@
-const mongoDB = require("./mongoDB");
+const mongoDB = require('./mongoDB')
 
-module.exports = { mongoDB };
+module.exports = { mongoDB }

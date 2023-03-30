@@ -1,6 +1,6 @@
 {
   "name": "so_yummy_golt_backend",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "_moduleAliases": {
     "@root": ".",
@@ -24,17 +24,21 @@
     "@sendgrid/mail": "^7.7.0",
     "axios": "^1.3.4",
     "bcrypt": "^5.1.0",
+    "colors": "^1.4.0",
     "cors": "2.8.5",
     "cross-env": "7.0.3",
     "dotenv": "^16.0.3",
     "express": "4.17.1",
+    "express-async-handler": "^1.2.0",
     "form-data": "^4.0.0",
     "joi": "^17.7.1",
     "jsonwebtoken": "^9.0.0",
     "module-alias": "^2.2.2",
     "mongoose": "^7.0.0",
     "morgan": "1.10.0",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
     "eslint": "7.19.0",
