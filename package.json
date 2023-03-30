@@ -1,6 +1,6 @@
 {
   "name": "so_yummy_golt_backend",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "_moduleAliases": {
     "@root": ".",
