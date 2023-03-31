@@ -29,10 +29,22 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              type: 'array',
-              items: {
-                $ref: '#/components/schemas/Recipe',
-              },
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/PaginatedResponse',
+                },
+                {
+                  properties: {
+                    data: {
+                      type: 'array',
+                      items: {
+                        $ref: '#/components/schemas/Recipe',
+                      },
+                    },
+                  },
+                },
+              ],
             },
           },
         },
