@@ -1,7 +1,13 @@
 module.exports = {
   User: {
     type: 'object',
+    required: ['name', 'email', 'password'],
     properties: {
+      _id: {
+        type: 'string',
+        description: 'Backend-generated unique identifier.',
+        example: '63fa1eb8ed1b46fa6fd8e857',
+      },
       name: {
         type: 'string',
         description: "User's name",
@@ -17,16 +23,36 @@ module.exports = {
         description: "Hashed user's password",
         example: 'hjdf5sx76ggsx',
       },
+      avatarURL: {
+        type: 'string',
+        description: "User's avatar URL",
+        example:
+          'https://s.gravatar.com/avatar/068de491621f7014bb5f8b3d473f50a3?s=250',
+      },
       token: {
         type: 'string',
-        description: "User's json web token",
-        example: 'Bearer adsjkasnxz.csdcdfgdvgfhgfdcs.saxsa',
+        description: 'Backend-generated unique json web token',
+        example: 'adsjkasnxz.csdcdfgdvgfhgfdcs.saxsa',
       },
       receiptsCollection: {
         type: 'array',
-        description: "User's collection of arrays",
-        example:
-          "[{name: myCollection, items: [{name:'receipt001', description:'blablabla', rating:9.7, createdAt: 01.01.2010}], createdAt:01.01.2010}]",
+        description: "User's collection of receipts",
+        items: { type: 'object' },
+        // items: {
+        //   type: 'object',
+        //   properties: {
+        //     id: {
+        //       type: 'string',
+        //       description: 'Receipt id',
+        //       example: '1',
+        //     },
+        //     name: {
+        //       type: 'string',
+        //       description: 'Receipt name',
+        //       example: 'receipt001',
+        //     },
+        //   },
+        // },
       },
     },
   },
