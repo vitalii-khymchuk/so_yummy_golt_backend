@@ -1,14 +1,35 @@
 module.exports = {
   post: {
-    tags: ['Auth operations'],
-    description: 'User registration',
+    tags: ['Auth'],
+    summary: 'Register a new user',
+    description: 'This route registers the user',
     operationId: 'signup',
     parameters: [],
     requestBody: {
+      description: 'An example of a request object for creating a new user',
+      required: true,
       content: {
         'application/json': {
           schema: {
-            $ref: '#/components/schemas/???',
+            type: 'object',
+            required: ['name', 'email', 'password'],
+            properties: {
+              name: {
+                type: 'string',
+                description: 'Username',
+                example: 'John Smith',
+              },
+              email: {
+                type: 'string',
+                description: 'E-mail address',
+                example: 'smith@mail.com',
+              },
+              password: {
+                type: 'string',
+                description: 'Password',
+                example: 'hjdf5sx76ggsx',
+              },
+            },
           },
         },
       },
@@ -16,6 +37,12 @@ module.exports = {
     responses: {
       201: {
         description: 'Registration success',
+      },
+      400: {
+        description: 'Bad request (invalid request body)',
+      },
+      409: {
+        description: 'Provided email already exists',
       },
       500: {
         description: 'Server error',
