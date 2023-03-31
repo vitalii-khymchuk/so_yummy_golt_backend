@@ -4,7 +4,7 @@ module.exports = {
     summary: 'Get the recipes by categories for the main page',
     description:
       'This route return the recipes by categories for the main page',
-    operationId: 'current',
+    operationId: 'mainPage',
     parameters: [
       {
         $ref: '#/components/parameters/authorizationParam',
