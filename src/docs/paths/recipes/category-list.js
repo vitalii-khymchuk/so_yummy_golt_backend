@@ -3,7 +3,7 @@ module.exports = {
     tags: ['Recipes'],
     summary: 'Get the recipes categories list',
     description: 'This route return the recipes categories list',
-    operationId: 'current',
+    operationId: 'categoryList',
     parameters: [
       {
         $ref: '#/components/parameters/authorizationParam',
