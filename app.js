@@ -1,6 +1,8 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
+const swaggerUI = require('swagger-ui-express')
+const docs = require('@src/docs')
 const { errorHandler } = require('@middlewares')
 
 require('colors')
@@ -14,6 +16,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/', express.static('./public'))
+
+app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(docs))
 
 app.use((req, res) => {
   res.status(404).json({ code: 404, message: 'Not found' })
