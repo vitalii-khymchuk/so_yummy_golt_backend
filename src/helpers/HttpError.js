@@ -7,9 +7,9 @@ const errorMessageList = {
   500: 'Internal server error',
 }
 
-const HttpError = (status, message = errorMessageList[status]) => {
+const HttpError = (status = 500, message = errorMessageList[status]) => {
   const error = new Error(message)
-  error.status = status
+  error.statusCode = status
   return error
 }
 

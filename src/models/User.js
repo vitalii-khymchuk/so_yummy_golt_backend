@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose')
-const { handleMongooseError } = require('../utils')
+const { handleMongooseError } = require('@helpers')
 const Joi = require('joi')
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
@@ -35,13 +35,17 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    isVerify: {
-      type: Boolean,
-      default: false,
-    },
-    verificationToken: {
-      type: String,
-      required: [true, 'Verify token is required'],
+    // isVerify: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // verificationToken: {
+    //   type: String,
+    //   required: [true, 'Verify token is required'],
+    // },
+    receipts: {
+      type: Array,
+      default: [],
     },
     favorites: {
       type: Array,
