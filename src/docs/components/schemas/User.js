@@ -44,6 +44,11 @@ module.exports = {
         description: 'Backend-generated token for email confirmation',
         example: 'fger74r4r43dw8',
       },
+      receipts: {
+        type: 'array',
+        description: "User's collection of saved receipts (array of ObjectId)",
+        items: { type: 'string' },
+      },
       favorites: {
         type: 'array',
         description:
