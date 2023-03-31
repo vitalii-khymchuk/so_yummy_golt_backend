@@ -34,25 +34,39 @@ module.exports = {
         description: 'Backend-generated unique json web token',
         example: 'adsjkasnxz.csdcdfgdvgfhgfdcs.saxsa',
       },
-      receiptsCollection: {
+      isVerify: {
+        type: 'Boolean',
+        description: 'Flag is user confirmed registration by email',
+        example: true,
+      },
+      verificationToken: {
+        type: 'String',
+        description: 'Backend-generated token for email confirmation',
+        example: 'fger74r4r43dw8',
+      },
+      favorites: {
         type: 'array',
-        description: "User's collection of receipts",
-        items: { type: 'object' },
-        // items: {
-        //   type: 'object',
-        //   properties: {
-        //     id: {
-        //       type: 'string',
-        //       description: 'Receipt id',
-        //       example: '1',
-        //     },
-        //     name: {
-        //       type: 'string',
-        //       description: 'Receipt name',
-        //       example: 'receipt001',
-        //     },
-        //   },
-        // },
+        description:
+          "User's collection of favorite receipts (array of ObjectId)",
+        items: { type: 'string' },
+      },
+      shoppingList: {
+        type: 'array',
+        description: 'User collection of products to shop',
+        items: {
+          type: 'array',
+          items: {
+            _id: {
+              type: 'string',
+            },
+            quantity: {
+              type: 'number',
+            },
+            unit: {
+              type: 'string',
+            },
+          },
+        },
       },
     },
   },
