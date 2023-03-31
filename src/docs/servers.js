@@ -1,8 +1,10 @@
+const { BASE_URL } = process.env
+
 module.exports = {
   servers: [
     {
-      url: 'http://localhost:3001',
-      description: 'Local server',
+      url: `${BASE_URL}/api/v1`,
+      description: 'SoYummy main API server',
     },
   ],
 }
