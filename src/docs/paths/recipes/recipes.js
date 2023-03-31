@@ -4,6 +4,11 @@ module.exports = {
     summary: 'Get (search) the recipes list',
     description: 'This route returns the recipes list',
     operationId: 'recipes',
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
     parameters: [
       {
         $ref: '#/components/parameters/authorizationParam',
@@ -83,10 +88,5 @@ module.exports = {
         description: 'Server error',
       },
     },
-    security: [
-      {
-        BearerAuth: [],
-      },
-    ],
   },
 }

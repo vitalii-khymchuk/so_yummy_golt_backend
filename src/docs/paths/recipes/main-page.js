@@ -5,6 +5,11 @@ module.exports = {
     description:
       'This route return the recipes by categories for the main page',
     operationId: 'mainPage',
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
     parameters: [
       {
         $ref: '#/components/parameters/authorizationParam',

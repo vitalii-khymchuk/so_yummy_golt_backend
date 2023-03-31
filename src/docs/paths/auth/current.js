@@ -4,6 +4,11 @@ module.exports = {
     summary: 'Get information about the current user',
     description: 'This route return information about the current user',
     operationId: 'current',
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
     parameters: [
       {
         $ref: '#/components/parameters/authorizationParam',

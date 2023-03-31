@@ -4,6 +4,11 @@ module.exports = {
     summary: 'Get the recipe by ID',
     description: 'This route returns the recipe by ID',
     operationId: 'recipeId',
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
     parameters: [
       {
         name: 'recipeId',
