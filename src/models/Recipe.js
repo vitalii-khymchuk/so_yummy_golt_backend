@@ -88,7 +88,7 @@ const recipeSchema = new Schema(
 
 recipeSchema.post('save', handleMongooseError)
 
-const postRecipeSchema = Joi.object({
+const postRecipe = Joi.object({
   title: Joi.string().min(3).max(50).required(),
   category: Joi.object({ $oid: Joi.string() }).required(),
   instruction: Joi.string().min(3).max(615).required(),
@@ -97,7 +97,7 @@ const postRecipeSchema = Joi.object({
   youtube: Joi.string()
     .min(3)
     .max(40)
-    .matches(urlRegExp, 'URL must start with "http://" or "https://"'),
+    .pattern(urlRegExp, 'URL must start with "http://" or "https://"'),
   ingredients: Joi.array()
     .items(Joi.object({ $oid: Joi.string() }))
     .required(),
