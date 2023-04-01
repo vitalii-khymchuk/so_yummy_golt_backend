@@ -18,11 +18,6 @@ module.exports = {
         description: "User's email",
         example: 'smith@mail.com',
       },
-      password: {
-        type: 'string',
-        description: "Hashed user's password",
-        example: 'hjdf5sx76ggsx',
-      },
       avatarURL: {
         type: 'string',
         description: "User's avatar URL",
@@ -33,16 +28,6 @@ module.exports = {
         type: 'string',
         description: 'Backend-generated unique json web token',
         example: 'adsjkasnxz.csdcdfgdvgfhgfdcs.saxsa',
-      },
-      isVerify: {
-        type: 'Boolean',
-        description: 'Flag is user confirmed registration by email',
-        example: true,
-      },
-      verificationToken: {
-        type: 'String',
-        description: 'Backend-generated token for email confirmation',
-        example: 'fger74r4r43dw8',
       },
       receipts: {
         type: 'array',
