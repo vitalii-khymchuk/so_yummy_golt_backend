@@ -1,6 +1,6 @@
 module.exports = {
   delete: {
-    tags: ['Recipes'],
+    tags: ['RecipesFavorite'],
     summary: 'Delete recipe from favorite',
     description: 'This route removes the recipe from favorite',
     operationId: 'favorite-delete',

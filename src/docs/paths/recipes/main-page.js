@@ -1,6 +1,6 @@
 module.exports = {
   get: {
-    tags: ['Recipes'],
+    tags: ['RecipesPages'],
     summary: 'Get the recipes by categories for the main page',
     description:
       'This route return the recipes by categories for the main page',

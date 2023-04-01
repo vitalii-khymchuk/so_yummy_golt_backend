@@ -1,6 +1,6 @@
 module.exports = {
   patch: {
-    tags: ['Recipes'],
+    tags: ['RecipesFavorite'],
     summary: 'Add recipe to favorite',
     description: 'This route adds the recipe to favorite',
     operationId: 'favorite-add',

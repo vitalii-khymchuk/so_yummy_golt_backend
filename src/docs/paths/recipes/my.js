@@ -1,6 +1,6 @@
 module.exports = {
   get: {
-    tags: ['Recipes'],
+    tags: ['RecipesPages'],
     summary: 'Get the recipes of the current user',
     description: 'This route returns the recipes of the current user',
     operationId: 'my',
