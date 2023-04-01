@@ -1,6 +1,6 @@
 module.exports = {
   get: {
-    tags: ['Recipes'],
+    tags: ['RecipesPages'],
     summary: 'Get the popular recipes',
     description: 'This route returns the popular recipes',
     operationId: 'popular',

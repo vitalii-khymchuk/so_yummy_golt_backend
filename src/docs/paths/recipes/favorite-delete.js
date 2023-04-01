@@ -1,6 +1,6 @@
 module.exports = {
   delete: {
-    tags: ['Recipes'],
+    tags: ['RecipesFavorite'],
     summary: 'Delete recipe from favorite',
     description: 'This route removes the recipe from favorite',
     operationId: 'favorite-delete',
@@ -11,13 +11,7 @@ module.exports = {
     ],
     parameters: [
       {
-        name: 'recipeId',
-        in: 'path',
-        description: 'Recipe ID',
-        required: true,
-        schema: {
-          type: 'string',
-        },
+        $ref: '#/components/parameters/recipeIdParam',
       },
       {
         $ref: '#/components/parameters/authorizationParam',

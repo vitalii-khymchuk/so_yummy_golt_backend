@@ -1,9 +1,9 @@
 module.exports = {
-  patch: {
-    tags: ['RecipesFavorite'],
-    summary: 'Add recipe to favorite',
-    description: 'This route adds the recipe to favorite',
-    operationId: 'favorite-add',
+  get: {
+    tags: ['RecipesIngredients'],
+    summary: 'Get the ingredients list',
+    description: 'This route returns the recipes ingredients list',
+    operationId: 'igredients-list',
     security: [
       {
         BearerAuth: [],
@@ -11,21 +11,19 @@ module.exports = {
     ],
     parameters: [
       {
-        $ref: '#/components/parameters/recipeIdParam',
-      },
-      {
         $ref: '#/components/parameters/authorizationParam',
       },
     ],
     responses: {
       200: {
-        description: 'Add to favorite success',
+        description: 'Information found',
         content: {
           'application/json': {
             schema: {
-              type: 'object',
-              example: {
-                status: true,
+              type: 'array',
+              description: 'Ingredients list',
+              items: {
+                $ref: '#/components/schemas/Ingredient',
               },
             },
           },
@@ -33,9 +31,6 @@ module.exports = {
       },
       401: {
         description: 'Missing header with authorization token',
-      },
-      404: {
-        description: 'Not found',
       },
       500: {
         description: 'Server error',
