@@ -1,9 +1,11 @@
 const errorHandler = require('./errorHandler')
-const { bodyValidation } = require('./bodyValidation')
 const paginatedResponse = require('./paginatedResponse')
+const { bodyValidation } = require('./bodyValidation')
+const { authenticate } = require('./authenticate')
 
 module.exports = {
   errorHandler,
-  bodyValidation,
   paginatedResponse,
+  bodyValidation,
+  authenticate,
 }

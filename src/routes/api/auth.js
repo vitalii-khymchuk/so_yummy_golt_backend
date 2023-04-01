@@ -1,18 +1,18 @@
 const express = require('express')
 const { authCtrl } = require('@controllers')
 const { bodyValidation } = require('@middlewares')
-const { authSchemas } = require('@models')
+const { authBodySchemas } = require('@models')
 
 const router = express.Router()
 
 router.post(
   '/auth/signup',
-  bodyValidation(authSchemas.sighUpSchema),
+  bodyValidation(authBodySchemas.signup),
   authCtrl.signup
 )
 router.post(
   '/auth/signin',
-  bodyValidation(authSchemas.sighInSchema),
+  bodyValidation(authBodySchemas.signin),
   authCtrl.signin
 )
 // router.patch(
