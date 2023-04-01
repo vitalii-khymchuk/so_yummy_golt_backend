@@ -1,9 +1,9 @@
 module.exports = {
   get: {
     tags: ['Recipes'],
-    summary: 'Get the recipes by category',
-    description: 'This route return the recipes by category',
-    operationId: 'category',
+    summary: 'Get the recipe by ID',
+    description: 'This route returns the recipe by ID',
+    operationId: 'recipeId',
     security: [
       {
         BearerAuth: [],
@@ -11,9 +11,9 @@ module.exports = {
     ],
     parameters: [
       {
-        name: 'categoryName',
+        name: 'recipeId',
         in: 'path',
-        description: 'Category name',
+        description: 'Recipe ID',
         required: true,
         schema: {
           type: 'string',
@@ -29,22 +29,7 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              type: 'object',
-              allOf: [
-                {
-                  $ref: '#/components/schemas/PaginatedResponse',
-                },
-                {
-                  properties: {
-                    data: {
-                      type: 'array',
-                      items: {
-                        $ref: '#/components/schemas/Recipe',
-                      },
-                    },
-                  },
-                },
-              ],
+              $ref: '#/components/schemas/Recipe',
             },
           },
         },

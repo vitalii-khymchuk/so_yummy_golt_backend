@@ -4,6 +4,11 @@ module.exports = {
     summary: 'Log out user',
     description: 'This route logs the user out',
     operationId: 'logout',
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
     parameters: [
       {
         $ref: '#/components/parameters/authorizationParam',

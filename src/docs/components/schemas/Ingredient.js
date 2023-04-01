@@ -9,9 +9,9 @@ module.exports = {
         example: '640c2dd963a319ea671e372c',
       },
       title: {
-        type: 'number',
-        description: "Ingredient's item amount (quantity)",
-        example: [1.5],
+        type: 'string',
+        description: "Ingredient's item title",
+        example: 'Banana',
       },
       description: {
         type: 'string',

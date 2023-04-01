@@ -1,11 +1,11 @@
 const parameters = require('./parameters')
 const schemas = require('./schemas')
-const securitySchemas = require('./securitySchemas')
+const securitySchemes = require('./securitySchemes')
 
 module.exports = {
   components: {
     ...parameters,
     ...schemas,
-    ...securitySchemas,
+    ...securitySchemes,
   },
 }
