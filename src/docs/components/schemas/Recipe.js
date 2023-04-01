@@ -34,7 +34,8 @@ module.exports = {
       instructions: {
         type: 'string',
         description: "Recipe's preparation steps describe text",
-        example: '',
+        example:
+          '1. Gather all ingredients. 2. Combine flour, white sugar, baking powder, and salt in a bowl. Mix together egg, milk, vegetable oil, and bananas in a second bowl. 3. Stir flour mixture into banana mixture; batter will be slightly lumpy. 4. Heat a lightly oiled griddle or frying pan over medium high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake. 5. Cook until pancakes are golden brown, 3 to 5 minutes per side. Serve hot. 6. Serve hot and enjoy!',
       },
       category: {
         type: 'string',
