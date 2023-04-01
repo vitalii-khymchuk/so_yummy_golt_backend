@@ -1,8 +1,8 @@
 module.exports = {
-  patch: {
-    tags: ['Auth'],
-    summary: 'Subscribe user',
-    description: 'This route subscribes user to newsletter',
+  post: {
+    tags: ['Subscribe'],
+    summary: 'Subscribe email',
+    description: 'This route subscribes provided email to the newsletter',
     operationId: 'subscribe',
     security: [
       {
@@ -15,18 +15,18 @@ module.exports = {
       },
     ],
     requestBody: {
-      description: 'An example of a request object for subscribing user',
+      description: 'An example of a request object for subscribing',
       required: true,
       content: {
         'application/json': {
           schema: {
             type: 'object',
-            required: ['subscribe'],
+            required: ['email'],
             properties: {
-              subscribe: {
-                type: 'boolean',
-                description: 'Subscription status',
-                example: 'true',
+              email: {
+                type: 'string',
+                description: 'Email to subscribe',
+                example: 'example@mail.com',
               },
             },
           },
@@ -35,7 +35,7 @@ module.exports = {
     },
     responses: {
       200: {
-        description: 'The user subscription was successfully updated',
+        description: 'The email was successfully subscribed',
         content: {
           'application/json': {
             schema: {
@@ -52,6 +52,9 @@ module.exports = {
       },
       401: {
         description: 'Missing header with authorization token',
+      },
+      409: {
+        description: 'Provided email already subscribed',
       },
       500: {
         description: 'Server error',

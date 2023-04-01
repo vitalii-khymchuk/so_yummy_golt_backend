@@ -29,31 +29,46 @@ module.exports = {
         description: 'Backend-generated unique json web token',
         example: 'adsjkasnxz.csdcdfgdvgfhgfdcs.saxsa',
       },
-      receipts: {
+      recipes: {
         type: 'array',
-        description: "User's collection of saved receipts (array of ObjectId)",
-        items: { type: 'string' },
+        description: "User's collection of saved recipes (array of ObjectId)",
+        items: {
+          type: 'string',
+          description: 'Receipt ID',
+          example: '63fa1eb8ed1b46fa6fd8e857',
+        },
       },
       favorites: {
         type: 'array',
         description:
-          "User's collection of favorite receipts (array of ObjectId)",
-        items: { type: 'string' },
+          "User's collection of favorite recipes (array of ObjectId)",
+        items: {
+          type: 'string',
+          description: 'Receipt ID',
+          example: '63fa1eb8ed1b46fa6fd8e857',
+        },
       },
       shoppingList: {
         type: 'array',
-        description: 'User collection of products to shop',
+        description: "User's collection of products to shop (array of Objects)",
         items: {
-          type: 'array',
-          items: {
-            _id: {
+          type: 'object',
+          required: ['id', 'amount', 'measure'],
+          properties: {
+            id: {
               type: 'string',
+              description: "Ingredient's item ID",
+              example: '640c2dd963a319ea671e372c',
             },
-            quantity: {
+            amount: {
               type: 'number',
+              description: "Ingredient's item amount (quantity)",
+              example: 1.5,
             },
-            unit: {
+            measure: {
               type: 'string',
+              description: "Ingredient's item measurement units",
+              example: 'tbsp',
             },
           },
         },
