@@ -16,7 +16,7 @@ module.exports = {
     ],
     responses: {
       200: {
-        description: 'Information found. Result in paginated form',
+        description: 'Information found',
         content: {
           'application/json': {
             schema: {
