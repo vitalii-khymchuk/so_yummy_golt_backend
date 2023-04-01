@@ -133,6 +133,9 @@ module.exports = {
       400: {
         description: 'Bad request (invalid request body)',
       },
+      401: {
+        description: 'Missing header with authorization token',
+      },
       500: {
         description: 'Server error',
       },
