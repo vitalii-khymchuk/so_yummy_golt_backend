@@ -21,8 +21,12 @@ module.exports = {
       description: 'Work with recipes categories.',
     },
     {
-      name: 'Ingredients',
+      name: 'RecipesIngredients',
       description: 'Work with ingredients.',
+    },
+    {
+      name: 'ShoppingList',
+      description: 'Work with shopping list.',
     },
   ],
 }
