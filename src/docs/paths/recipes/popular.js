@@ -1,24 +1,15 @@
 module.exports = {
   get: {
     tags: ['Recipes'],
-    summary: 'Get the recipes by category',
-    description: 'This route return the recipes by category',
-    operationId: 'category',
+    summary: 'Get the popular recipes',
+    description: 'This route returns the popular recipes',
+    operationId: 'popular',
     security: [
       {
         BearerAuth: [],
       },
     ],
     parameters: [
-      {
-        name: 'categoryName',
-        in: 'path',
-        description: 'Category name',
-        required: true,
-        schema: {
-          type: 'string',
-        },
-      },
       {
         $ref: '#/components/parameters/authorizationParam',
       },

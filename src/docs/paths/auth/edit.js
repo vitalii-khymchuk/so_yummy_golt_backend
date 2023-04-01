@@ -4,6 +4,11 @@ module.exports = {
     summary: 'Update user',
     description: "This route updates user's information",
     operationId: 'edit',
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
     parameters: [
       {
         $ref: '#/components/parameters/authorizationParam',

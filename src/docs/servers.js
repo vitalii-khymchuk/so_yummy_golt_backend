@@ -4,7 +4,7 @@ module.exports = {
   servers: [
     {
       url: `${BASE_URL}/api/v1`,
-      description: 'SoYummy main API server',
+      description: 'SoYummy Recipes API main server',
     },
   ],
 }
