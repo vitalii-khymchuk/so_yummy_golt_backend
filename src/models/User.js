@@ -61,7 +61,7 @@ const userSchema = new Schema(
 
 userSchema.post('save', handleMongooseError)
 
-const sighUpSchema = Joi.object({
+const signup = Joi.object({
   email: Joi.string()
     .min(3)
     .max(50)
@@ -72,7 +72,7 @@ const sighUpSchema = Joi.object({
   password: Joi.string().min(6).alphanum().required(),
 })
 
-const sighInSchema = Joi.object({
+const signin = Joi.object({
   email: Joi.string()
     .min(3)
     .max(50)
@@ -82,12 +82,12 @@ const sighInSchema = Joi.object({
   password: Joi.string().min(6).alphanum().required(),
 })
 
-const patchUserDataSchema = Joi.object({
+const patchUserData = Joi.object({
   name: Joi.string().min(4).max(25).required(),
 })
 
-const authSchemas = { sighUpSchema, sighInSchema, patchUserDataSchema }
+const authBodySchemas = { signup, signin, patchUserData }
 
 const User = model('user', userSchema)
 
-module.exports = { authSchemas, User }
+module.exports = { authBodySchemas, User }
