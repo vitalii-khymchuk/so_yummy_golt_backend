@@ -7,8 +7,8 @@ const favoriteDelete = require('./favorite-delete')
 
 module.exports = {
   '/recipes': {
-    ...recipes,
     ...recipeAdd,
+    ...recipes,
   },
   '/recipes/{recipeId}': {
     ...recipeId,

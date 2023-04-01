@@ -1,6 +1,6 @@
 module.exports = {
   get: {
-    tags: ['Recipes'],
+    tags: ['RecipesFavorite'],
     summary: 'Get the favorite recipes of the current user',
     description: 'This route returns the favorite recipes of the current user',
     operationId: 'my-favorite',

@@ -1,9 +1,9 @@
 module.exports = {
-  put: {
+  patch: {
     tags: ['Auth'],
-    summary: 'Update user',
-    description: "This route updates user's information",
-    operationId: 'edit',
+    summary: 'Subscribe user',
+    description: 'This route subscribes user to newsletter',
+    operationId: 'subscribe',
     security: [
       {
         BearerAuth: [],
@@ -15,18 +15,18 @@ module.exports = {
       },
     ],
     requestBody: {
-      description: 'An example of a request object for updating user',
+      description: 'An example of a request object for subscribing user',
       required: true,
       content: {
         'application/json': {
           schema: {
             type: 'object',
-            required: ['name', 'email', 'password'],
+            required: ['subscribe'],
             properties: {
-              name: {
-                type: 'string',
-                description: 'Username',
-                example: 'John Smith',
+              subscribe: {
+                type: 'boolean',
+                description: 'Subscription status',
+                example: 'true',
               },
             },
           },
@@ -35,11 +35,14 @@ module.exports = {
     },
     responses: {
       200: {
-        description: 'The user was successfully updated',
+        description: 'The user subscription was successfully updated',
         content: {
           'application/json': {
             schema: {
-              $ref: '#/components/schemas/User',
+              type: 'object',
+              example: {
+                status: true,
+              },
             },
           },
         },

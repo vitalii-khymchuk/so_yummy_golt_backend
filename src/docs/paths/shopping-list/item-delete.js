@@ -1,9 +1,9 @@
 module.exports = {
-  get: {
-    tags: ['Recipes'],
-    summary: 'Get the recipe by ID',
-    description: 'This route returns the recipe by ID',
-    operationId: 'recipeId',
+  delete: {
+    tags: ['ShoppingList'],
+    summary: 'Delete product from the shopping list',
+    description: 'This route removes product from the shopping list',
+    operationId: 'shopping-list-item-delete',
     security: [
       {
         BearerAuth: [],
@@ -11,22 +11,15 @@ module.exports = {
     ],
     parameters: [
       {
-        $ref: '#/components/parameters/recipeIdParam',
+        $ref: '#/components/parameters/productIdParam',
       },
       {
         $ref: '#/components/parameters/authorizationParam',
       },
     ],
     responses: {
-      200: {
-        description: 'Information found',
-        content: {
-          'application/json': {
-            schema: {
-              $ref: '#/components/schemas/Recipe',
-            },
-          },
-        },
+      204: {
+        description: 'Product was successfully deleted',
       },
       401: {
         description: 'Missing header with authorization token',
