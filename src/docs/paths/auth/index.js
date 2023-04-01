@@ -4,5 +4,4 @@ module.exports = {
   '/auth/logout': require('./logout'),
   '/auth/current': require('./current'),
   '/auth/edit': require('./edit'),
-  '/auth/subscribe': require('./subscribe'),
 }

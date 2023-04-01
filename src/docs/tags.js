@@ -5,6 +5,10 @@ module.exports = {
       description: 'Work with users auth.',
     },
     {
+      name: 'Subscribe',
+      description: 'Work with subscribe.',
+    },
+    {
       name: 'Recipes',
       description: 'Work with recipes.',
     },
