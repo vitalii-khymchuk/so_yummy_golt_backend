@@ -11,13 +11,7 @@ module.exports = {
     ],
     parameters: [
       {
-        name: 'recipeId',
-        in: 'path',
-        description: 'Recipe ID',
-        required: true,
-        schema: {
-          type: 'string',
-        },
+        $ref: '#/components/parameters/recipeIdParam',
       },
       {
         $ref: '#/components/parameters/authorizationParam',
