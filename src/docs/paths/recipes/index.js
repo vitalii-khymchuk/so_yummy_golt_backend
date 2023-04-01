@@ -12,6 +12,7 @@ module.exports = {
     ...recipeId,
     ...recipeDelete,
   },
+  '/recipes/my': require('./my'),
   '/recipes/main-page': require('./main-page'),
   '/recipes/popular': require('./popular'),
   '/recipes/category/{categoryName}': require('./category'),
