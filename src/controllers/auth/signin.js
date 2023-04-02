@@ -1,6 +1,7 @@
 const { HttpError } = require('@helpers')
 const asyncHandler = require('express-async-handler')
-const { User } = require('@models')
+const { User, Category, Recipe } = require('@models')
+const { pipelines } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -22,6 +23,10 @@ const signin = async (req, res) => {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '24h' })
 
   await User.findByIdAndUpdate(user._id, { token })
+
+  // const info = await Recipe.aggregate([
+  //   ...pipelines.addCheckedFieldsToRecipes(user._id),
+  // ])
 
   res.status(201).json({ code: 201, token })
 }
