@@ -7,7 +7,7 @@ const { BASE_URL } = process.env
  * @returns {string}
  */
 const getPageUrl = (path, page) => {
-  return `${BASE_URL}/api/v1${path}?page=${page}`
+  return page ? `${BASE_URL}/api/v1${path}?page=${page}` : null
 }
 
 /**
