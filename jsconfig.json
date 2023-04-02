@@ -2,7 +2,15 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@root": ["."],
+      "@src": ["./src"],
+      "@controllers": ["./src/controllers"],
+      "@middlewares": ["./src/middlewares"],
+      "@routes": ["./src/routes"],
+      "@services": ["./src/services"],
+      "@models": ["./src/models"],
+      "@helpers": ["./src/helpers"]
     }
   },
   "include": ["src/**/*"]
