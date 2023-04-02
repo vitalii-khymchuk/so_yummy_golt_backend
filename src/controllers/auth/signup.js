@@ -28,7 +28,10 @@ const signup = async (req, res) => {
 
   await User.findByIdAndUpdate(newUser._id, { token })
 
-  res.status(201).json({ status: 201, token })
+  const { favorites, shoppingList, recipes } = user
+  const data = { name, email, avatarUrl, favorites, shoppingList, recipes }
+
+  res.status(201).json({ status: 201, token, data })
 }
 
 module.exports = { signup: asyncHandler(signup) }
