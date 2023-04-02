@@ -1,7 +1,16 @@
 // apply to Recipe model
 
-const addCheckedFieldsToRecipes = userId => {
+/**
+ * addCheckedFieldsToRecipes
+ * @param {object} userId Mongoose ObjectId() of user
+ * @param {object} recipeId Mongoose ObjectId() of recipe
+ * @returns {array} returns pipeline to aggregation
+ */
+const addCheckedFieldsToRecipes = (userId, recipeId) => {
   return [
+    {
+      $match: { _id: recipeId },
+    },
     {
       $unwind: {
         path: '$ingredients',

@@ -4,6 +4,10 @@ const {
   calculatePopularityOfRecipes,
 } = require('./calculatePopularityOfRecipes')
 
+/**
+ * mainPage
+ * @returns {array} returns pipeline to aggregation
+ */
 const mainPage = () => {
   return [
     {
