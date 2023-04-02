@@ -24,11 +24,11 @@ const signin = async (req, res) => {
 
   await User.findByIdAndUpdate(user._id, { token })
 
-  const info = await Recipe.aggregate([
-    ...pipelines.addCheckedFieldsToRecipes(user._id),
-  ])
+  // const info = await Recipe.aggregate([
+  //   ...pipelines.addCheckedFieldsToRecipes(user._id),
+  // ])
 
-  res.status(201).json({ code: 201, token, info })
+  res.status(201).json({ code: 201, token })
 }
 
 module.exports = { signin: asyncHandler(signin) }
