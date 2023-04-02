@@ -1,6 +1,11 @@
 //Apply to Recipe model
 
-const calculatePopularityOfRecipes = () => {
+/**
+ * addCheckedFieldsToRecipes
+ * @param {number} amount number of documents to return
+ * @returns {array} returns pipeline to aggregation
+ */
+const calculatePopularityOfRecipes = (amount = 4) => {
   return [
     {
       $lookup: {
@@ -8,6 +13,14 @@ const calculatePopularityOfRecipes = () => {
         localField: '_id',
         foreignField: 'favorites',
         as: 'owners',
+      },
+    },
+    {
+      $lookup: {
+        from: 'categories',
+        localField: 'category',
+        foreignField: '_id',
+        as: 'category',
       },
     },
     {
@@ -19,6 +32,14 @@ const calculatePopularityOfRecipes = () => {
     },
     {
       $unset: 'owners',
+    },
+    {
+      $sort: {
+        popularity: -1,
+      },
+    },
+    {
+      $limit: amount,
     },
   ]
 }
