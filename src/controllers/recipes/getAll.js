@@ -8,14 +8,14 @@ const getAll = async (req, res) => {
   const { page, skip, limit } = req.paginatedResponse
 
   const match = {}
-  const { filters } = req.query
+  const { filter } = req.query
 
-  if (filters?.title) {
-    match.title = { $regex: filters.title, $options: 'i' }
+  if (filter?.title) {
+    match.title = { $regex: filter.title, $options: 'i' }
   }
 
-  // if (filters?.ingredients) {
-  //   match.ingredients = filters.ingredients
+  // if (filter?.ingredients) {
+  //   match.ingredients = filter.ingredients
   // }
 
   const { total, data } = await RecipesService.searchAll(match, {
