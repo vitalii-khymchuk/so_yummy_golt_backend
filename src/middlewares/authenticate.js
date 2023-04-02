@@ -1,3 +1,6 @@
-const authenticate = (req, res, next) => {}
+const authenticate = (req, res, next) => {
+  console.log('auth')
+  next()
+}
 
 module.exports = { authenticate }
