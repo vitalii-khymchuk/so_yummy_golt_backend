@@ -22,8 +22,13 @@ module.exports = {
           schema: {
             type: 'object',
             description: 'Shopping list product',
-            required: ['id', 'amount', 'measure'],
+            required: ['recipeId', 'id', 'amount', 'measure'],
             properties: {
+              recipeId: {
+                type: 'string',
+                description: "Recipe's ID",
+                example: '640c2dd963a319ea671e372c',
+              },
               id: {
                 type: 'string',
                 description: "Ingredient's item ID",
@@ -41,6 +46,7 @@ module.exports = {
               },
             },
             example: {
+              recipeId: '319eaa36d79632c71e640c2d',
               id: '640c2dd963a319ea671e372c',
               amount: 1,
               measure: 'tbsp',

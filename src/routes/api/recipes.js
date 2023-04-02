@@ -1,10 +1,18 @@
 const express = require('express')
-const { bodyValidation, authenticate } = require('@middlewares')
-const { authBodySchemas } = require('@models')
+
+const { recipesCtrl } = require('@controllers')
+
+const {
+  // bodyValidation,
+  authenticate,
+  paginate,
+} = require('@middlewares')
+// const { authBodySchemas } = require('@models')
 
 const router = express.Router()
 
-// router.get('/recipes', authenticate, recipesCtrl.getAll)
+router.get('/recipes', authenticate, paginate, recipesCtrl.getAll)
+
 // router.get('/recipes/:recipeId', authenticate, recipesCtrl.getOne)
 // router.post(
 //   '/recipes',

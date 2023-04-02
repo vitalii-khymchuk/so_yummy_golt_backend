@@ -18,10 +18,10 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/', express.static('./public'))
-
 app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(docs))
+
 app.use('/api/v1', authRouter)
-// app.use('/api/v1', recipesRouter)
+app.use('/api/v1', recipesRouter)
 
 app.use((req, res) => {
   res.status(404).json({ code: 404, message: 'Not found' })

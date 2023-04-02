@@ -6,5 +6,5 @@ module.exports = {
     ...items,
     ...itemAdd,
   },
-  '/shopping-list/{productId}': require('./item-delete'),
+  '/shopping-list/{recipeId}/{productId}': require('./item-delete'),
 }

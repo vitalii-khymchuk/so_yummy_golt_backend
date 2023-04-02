@@ -1,3 +1,7 @@
 const mongoDB = require('./mongoDB')
+const RecipesService = require('./RecipesService')
 
-module.exports = { mongoDB }
+module.exports = {
+  mongoDB,
+  RecipesService,
+}
