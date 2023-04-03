@@ -19,6 +19,11 @@ class RecipesService {
       data,
     }
   }
+
+  async searchById(id) {
+    console.log(id)
+    return await Recipe.findById(id)
+  }
 }
 
 module.exports = new RecipesService()

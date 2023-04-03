@@ -6,6 +6,7 @@ const {
   // bodyValidation,
   authenticate,
   paginate,
+  isValidId,
 } = require('@middlewares')
 // const { authBodySchemas } = require('@models')
 
@@ -13,7 +14,13 @@ const router = express.Router()
 
 router.get('/recipes', authenticate, paginate, recipesCtrl.getAll)
 
-// router.get('/recipes/:recipeId', authenticate, recipesCtrl.getOne)
+router.get(
+  '/recipes/:recipeId',
+  authenticate,
+  isValidId('recipeId'),
+  recipesCtrl.getOne
+)
+
 // router.post(
 //   '/recipes',
 //   authenticate,
