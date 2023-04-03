@@ -8,7 +8,7 @@ const {
  * mainPage
  * @returns {array} returns pipeline to aggregation
  */
-const mainPage = () => {
+const mainPage = ({ categoriesLimit = 8, recipesInCategory = 4 }) => {
   return [
     {
       $lookup: {
@@ -69,7 +69,7 @@ const mainPage = () => {
     {
       $addFields: {
         recipes: {
-          $slice: ['$recipes', 0, 4],
+          $slice: ['$recipes', 0, Number(recipesInCategory)],
         },
       },
     },
@@ -79,7 +79,7 @@ const mainPage = () => {
       },
     },
     {
-      $limit: 8,
+      $limit: Number(categoriesLimit),
     },
   ]
 }
