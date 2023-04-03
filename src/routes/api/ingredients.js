@@ -4,6 +4,6 @@ const { ingredientsCtrl } = require('@controllers')
 
 const router = express.Router()
 
-router.get('/ingredients/list', authenticate, ingredientsCtrl.getList)
+router.get('/ingredients/list', authenticate, ingredientsCtrl.getAll)
 
 module.exports = router

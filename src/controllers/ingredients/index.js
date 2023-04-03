@@ -1,3 +1,3 @@
-const { getList } = require('./getList')
+const { getAll } = require('./getAll')
 
-module.exports = { getList }
+module.exports = { getAll }

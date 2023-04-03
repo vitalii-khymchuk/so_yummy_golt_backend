@@ -24,6 +24,10 @@ class RecipesService {
     console.log(id)
     return await Recipe.findById(id)
   }
+
+  async getUserRecipes(userId) {
+    return await Recipe.find({ owner: userId })
+  }
 }
 
 module.exports = new RecipesService()
