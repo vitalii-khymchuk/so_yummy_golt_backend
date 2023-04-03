@@ -1,4 +1,5 @@
 const { Recipe } = require('@models')
+const { pipelines } = require('@helpers')
 
 class RecipesService {
   async searchAll(searchParams = {}, searchOptions = {}) {
@@ -27,6 +28,16 @@ class RecipesService {
 
   async getUserRecipes(userId) {
     return await Recipe.find({ owner: userId })
+  }
+  async getMainPageRecipes({ categoriesNum, recipesInCategory }) {
+    return await Recipe.aggregate(
+      pipelines.mainPage({ categoriesNum, recipesInCategory })
+    )
+  }
+  async getPopular(amountOfRecipes) {
+    return await Recipe.aggregate(
+      pipelines.calculatePopularityOfRecipes(amountOfRecipes)
+    )
   }
 }
 
