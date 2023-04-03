@@ -11,10 +11,12 @@ const {
 const getPopularByCategory = ({ amount = 8, categoryName }) => {
   const filterByCategory = [
     {
-      $match: { category: categoryName },
+      $match: {
+        'category.category': { $regex: new RegExp(categoryName, 'i') },
+      },
     },
-    ]
-    return [...calculatePopularityOfRecipes(amount), ...filterByCategory]
+  ]
+  return [...calculatePopularityOfRecipes(amount), ...filterByCategory]
 }
 
 module.exports = { getPopularByCategory }
