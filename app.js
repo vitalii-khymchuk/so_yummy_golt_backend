@@ -4,7 +4,7 @@ const cors = require('cors')
 const swaggerUI = require('swagger-ui-express')
 const docs = require('@src/docs')
 const { errorHandler } = require('@middlewares')
-const { authRouter, recipesRouter } = require('@routes/api')
+const { authRouter, recipesRouter, ingredientsRouter } = require('@routes/api')
 
 require('colors')
 
@@ -22,6 +22,7 @@ app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(docs))
 
 app.use('/api/v1', authRouter)
 app.use('/api/v1', recipesRouter)
+app.use('/api/v1', ingredientsRouter)
 
 app.use((req, res) => {
   res.status(404).json({ code: 404, message: 'Not found' })
