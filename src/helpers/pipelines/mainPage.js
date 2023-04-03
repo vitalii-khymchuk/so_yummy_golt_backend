@@ -69,7 +69,7 @@ const mainPage = ({ categoriesNum = 8, recipesInCategory = 4 }) => {
     {
       $addFields: {
         recipes: {
-          $slice: ['$recipes', 0, recipesInCategory],
+          $slice: ['$recipes', 0, Number(recipesInCategory)],
         },
       },
     },
@@ -79,7 +79,7 @@ const mainPage = ({ categoriesNum = 8, recipesInCategory = 4 }) => {
       },
     },
     {
-      $limit: categoriesNum,
+      $limit: Number(categoriesNum),
     },
   ]
 }

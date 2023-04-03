@@ -39,7 +39,7 @@ const calculatePopularityOfRecipes = (amount = 4) => {
       },
     },
     {
-      $limit: amount,
+      $limit: Number(amount),
     },
   ]
 }
