@@ -1,11 +1,13 @@
 const mongoDB = require('./mongoDB')
 const RecipesService = require('./RecipesService')
 const AuthService = require('./AuthService')
-const ingredientsService = require('./IngredientsService')
+const IngredientsService = require('./IngredientsService')
+const CategoryService = require('./CategoryService')
 
 module.exports = {
   mongoDB,
   RecipesService,
   AuthService,
-  ingredientsService,
+  IngredientsService,
+  CategoryService,
 }

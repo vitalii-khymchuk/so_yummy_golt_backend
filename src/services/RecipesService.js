@@ -29,16 +29,13 @@ class RecipesService {
   async getUserRecipes(userId) {
     return await Recipe.find({ owner: userId })
   }
-  async getMainPageRecipes({ categoriesNum, recipesInCategory }) {
-    return await Recipe.aggregate(
-      pipelines.mainPage({ categoriesNum, recipesInCategory })
-    )
-  }
+
   async getPopular(amountOfRecipes) {
     return await Recipe.aggregate(
       pipelines.calculatePopularityOfRecipes(amountOfRecipes)
     )
   }
+
   async getByCategory({ categoryName, amount }) {
     return await Recipe.aggregate(
       pipelines.getPopularByCategory({ categoryName, amount })
