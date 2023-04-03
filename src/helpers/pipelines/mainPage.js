@@ -8,7 +8,7 @@ const {
  * mainPage
  * @returns {array} returns pipeline to aggregation
  */
-const mainPage = ({ categoriesNum = 8, recipesInCategory = 4 }) => {
+const mainPage = ({ categoriesLimit = 8, recipesInCategory = 4 }) => {
   return [
     {
       $lookup: {
@@ -79,7 +79,7 @@ const mainPage = ({ categoriesNum = 8, recipesInCategory = 4 }) => {
       },
     },
     {
-      $limit: Number(categoriesNum),
+      $limit: Number(categoriesLimit),
     },
   ]
 }

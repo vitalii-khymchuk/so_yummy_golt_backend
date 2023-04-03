@@ -2,10 +2,10 @@
 
 /**
  * addCheckedFieldsToRecipes
- * @param {number} amount number of documents to return
+ * @param {number} limit number of documents to return
  * @returns {array} returns pipeline to aggregation
  */
-const calculatePopularityOfRecipes = (amount = 4) => {
+const calculatePopularityOfRecipes = (limit = 4) => {
   return [
     {
       $lookup: {
@@ -39,7 +39,7 @@ const calculatePopularityOfRecipes = (amount = 4) => {
       },
     },
     {
-      $limit: Number(amount),
+      $limit: Number(limit),
     },
   ]
 }

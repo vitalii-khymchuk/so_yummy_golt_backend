@@ -2,11 +2,11 @@ const { Category } = require('@models')
 const { pipelines } = require('@helpers')
 
 class CategoryService {
-  async getMainPageRecipes({ categoriesNum, recipesInCategory }) {
+  async getMainPageRecipes({ categoriesLimit, recipesInCategory }) {
     return await Category.aggregate(
-      pipelines.mainPage({ categoriesNum, recipesInCategory })
+      pipelines.mainPage({ categoriesLimit, recipesInCategory })
     )
   }
 }
 
-module.exports = new CategoryService
+module.exports = new CategoryService()

@@ -4,11 +4,11 @@ const {
 
 /**
  * addCheckedFieldsToRecipes
- * @param {number} amount amount of recipes
+ * @param {number} limit amount of recipes
  * @param {string} categoryName Name of recipes category
  * @returns {array} returns pipeline to aggregation
  */
-const getPopularByCategory = ({ amount = 8, categoryName }) => {
+const getPopularByCategory = ({ limit = 8, categoryName }) => {
   const filterByCategory = [
     {
       $match: {
@@ -16,7 +16,7 @@ const getPopularByCategory = ({ amount = 8, categoryName }) => {
       },
     },
   ]
-  return [...calculatePopularityOfRecipes(amount), ...filterByCategory]
+  return [...calculatePopularityOfRecipes(limit), ...filterByCategory]
 }
 
 module.exports = { getPopularByCategory }

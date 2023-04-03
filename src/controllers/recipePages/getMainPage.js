@@ -2,9 +2,9 @@ const asyncHandler = require('express-async-handler')
 const { CategoryService } = require('@services')
 
 const getMainPage = async (req, res) => {
-  const { categoriesNum = 8, recipesInCategory = 4 } = req.query
+  const { categoriesLimit = 8, recipesInCategory = 4 } = req.query
   const data = await CategoryService.getMainPageRecipes({
-    categoriesNum,
+    categoriesLimit,
     recipesInCategory,
   })
   res.status(200).json({ code: 200, data })
