@@ -28,7 +28,7 @@ const signup = async (req, res) => {
 
   await User.findByIdAndUpdate(newUser._id, { token })
 
-  const { favorites, shoppingList, recipes } = user
+  const { favorites, shoppingList, recipes } = newUser
   const data = { name, email, avatarUrl, favorites, shoppingList, recipes }
 
   res.status(201).json({ status: 201, token, data })
