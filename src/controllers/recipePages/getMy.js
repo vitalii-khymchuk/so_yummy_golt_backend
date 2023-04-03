@@ -3,7 +3,7 @@ const { RecipesService } = require('@services')
 
 const getMy = async (req, res) => {
   const { id } = req.user
-  const recipes = RecipesService.getUserRecipes(id)
+  const recipes = await RecipesService.getUserRecipes(id)
   res.status(200).json({ code: 200, data: recipes })
 }
 
