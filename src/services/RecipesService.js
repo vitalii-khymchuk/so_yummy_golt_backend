@@ -39,6 +39,11 @@ class RecipesService {
       pipelines.calculatePopularityOfRecipes(amountOfRecipes)
     )
   }
+  async getByCategory({ categoryName, amount }) {
+    return await Recipe.aggregate(
+      pipelines.getPopularByCategory({ categoryName, amount })
+    )
+  }
 }
 
 module.exports = new RecipesService()
