@@ -29,6 +29,10 @@ class RecipesService {
     return await Recipe.create({ ...data })
   }
 
+  async removeOwnById(_id, owner) {
+    return await Recipe.findOneAndRemove({ _id, owner })
+  }
+
   async getUserRecipes(userId) {
     return await Recipe.find({ owner: userId })
   }

@@ -27,7 +27,12 @@ router.post(
   ctrl.addOne
 )
 
-// router.delete('/recipes/:recipeId', authenticate, ctrl.deleteOne)
+router.delete(
+  '/recipes/:recipeId',
+  authenticate,
+  isValidId('recipeId'),
+  ctrl.deleteOne
+)
 
 // router.get('/recipes/my', authenticate, ctrl.getUserRecipes)
 // router.get('/recipes/main-page', authenticate, ctrl.getMainPageRecipes)
