@@ -3,7 +3,7 @@ const { HttpError } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-class AuthService {
+class UserService {
   async signup({ email, name, password, avatarUrl }) {
     const user = await User.findOne({ email })
     if (user) {
@@ -62,4 +62,4 @@ class AuthService {
   }
 }
 
-module.exports = new AuthService()
+module.exports = new UserService()
