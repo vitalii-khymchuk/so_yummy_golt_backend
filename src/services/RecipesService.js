@@ -21,8 +21,11 @@ class RecipesService {
   }
 
   async searchById(id) {
-    console.log(id)
     return await Recipe.findById(id)
+  }
+
+  async createNew(data) {
+    return await Recipe.create({ ...data })
   }
 }
 
