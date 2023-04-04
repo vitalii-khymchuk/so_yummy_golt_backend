@@ -37,9 +37,9 @@ module.exports = {
                     example: '640c2dd963a319ea671e372c',
                   },
                   amount: {
-                    type: 'number',
+                    type: 'string',
                     description: "Ingredient's item amount (quantity)",
-                    example: 1.5,
+                    example: '1',
                   },
                   measure: {
                     type: 'string',
@@ -52,7 +52,7 @@ module.exports = {
                 {
                   recipeId: '319eaa36d79632c71e640c2d',
                   id: '640c2dd963a319ea671e372c',
-                  amount: 1,
+                  amount: '1',
                   measure: 'tbsp',
                 },
               ],
