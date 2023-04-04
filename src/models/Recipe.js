@@ -1,48 +1,67 @@
-const { Schema, model, SchemaTypes } = require('mongoose')
+const { Schema, model } = require('mongoose')
 const { handleMongooseError } = require('@helpers')
 const Joi = require('joi')
 
+Joi.objectId = require('joi-objectid')(Joi)
+
 const urlRegExp = /^(http|https):\/\//
+const urlMessge = 'URL must start with "http://" or "https://"'
 const urlSchema = {
   type: String,
   minLength: 3,
-  maxLength: 40,
   trim: true,
-  match: [urlRegExp, 'URL must start with "http://" or "https://"'],
+  match: [urlRegExp, urlMessge],
 }
+
+const recipeIngredientSchema = new Schema(
+  {
+    id: {
+      type: Schema.Types.ObjectId,
+      ref: 'ingredient',
+      required: true,
+    },
+    amount: {
+      type: String,
+      required: true,
+    },
+    measure: {
+      type: String,
+      default: '',
+    },
+  },
+  { _id: false }
+)
 
 const recipeSchema = new Schema(
   {
     title: {
       type: String,
       minLength: 3,
-      maxLength: 35,
+      maxLength: 50,
       trim: true,
-      required: true,
+      required: [true, 'Set a title for the recipe'],
     },
     category: {
-      type: SchemaTypes.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'category',
       required: true,
     },
     area: {
       type: 'String',
-      minLength: 3,
-      maxLength: 15,
+      minLength: 2,
       trim: true,
-      default: 'none',
+      default: null,
     },
-    instruction: {
+    instructions: {
       type: String,
       minLength: 3,
-      maxLength: 615,
       required: true,
       trim: true,
     },
     description: {
       type: String,
-      minLength: 3,
-      maxLength: 315,
+      minLength: 20,
+      maxLength: 350,
       required: true,
       trim: true,
     },
@@ -57,7 +76,7 @@ const recipeSchema = new Schema(
     time: {
       type: String,
       minLength: 1,
-      maxLength: 12,
+      maxLength: 20,
       required: true,
       trim: true,
     },
@@ -67,45 +86,56 @@ const recipeSchema = new Schema(
     },
     youtube: {
       ...urlSchema,
-      default: 'none',
+      default: null,
     },
     tags: {
       type: Array,
       default: [],
     },
-    ingredients: {
-      type: Array,
+    ingredients: [recipeIngredientSchema],
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
       required: true,
     },
-    owner: { type: SchemaTypes.ObjectId, ref: 'user', required: true },
     isPublic: {
       type: Boolean,
       default: false,
     },
   },
-  { versionKey: false, timestamps: true }
+  {
+    versionKey: false,
+    timestamps: true,
+  }
 )
 
 recipeSchema.post('save', handleMongooseError)
 
-const postRecipe = Joi.object({
+const addSchema = Joi.object({
   title: Joi.string().min(3).max(50).required(),
-  category: Joi.object({ $oid: Joi.string() }).required(),
-  instruction: Joi.string().min(3).max(615).required(),
-  description: Joi.string().min(3).max(315).required(),
-  time: Joi.string().min(1).max(12).required(),
-  youtube: Joi.string()
-    .min(3)
-    .max(40)
-    .pattern(urlRegExp, 'URL must start with "http://" or "https://"'),
+  category: Joi.objectId().required(),
+  area: Joi.string().min(2),
+  instructions: Joi.string().min(3).required(),
+  description: Joi.string().min(20).max(350).required(),
+  time: Joi.string().min(1).max(20).required(),
+  youtube: Joi.string().min(3).pattern(urlRegExp, urlMessge),
+  tags: Joi.array(),
   ingredients: Joi.array()
-    .items(Joi.object({ $oid: Joi.string() }))
+    .unique('id')
+    .items({
+      id: Joi.objectId().required(),
+      amount: Joi.string().required(),
+      measure: Joi.string(),
+    })
     .required(),
-  isPublic: Joi.bool(),
+  isPublic: Joi.boolean(),
 })
 
-const recipeBodySchemas = { postRecipe }
+const recipeSchemas = { addSchema }
 
 const Recipe = model('recipe', recipeSchema)
 
-module.exports = { recipeBodySchemas, Recipe }
+module.exports = {
+  Recipe,
+  recipeSchemas,
+}
