@@ -7,6 +7,10 @@ class CategoryService {
       pipelines.mainPage({ categoriesLimit, recipesInCategory })
     )
   }
+
+  async getCategories() {
+    return await Category.find()
+  }
 }
 
 module.exports = new CategoryService()

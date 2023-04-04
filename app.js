@@ -9,6 +9,7 @@ const {
   recipesRouter,
   ingredientsRouter,
   recipePagesRouter,
+  categoryListRouter,
 } = require('@routes/api')
 
 require('colors')
@@ -27,6 +28,7 @@ app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(docs))
 
 app.use('/api/v1', authRouter)
 app.use('/api/v1', recipePagesRouter)
+app.use('/api/v1', categoryListRouter)
 app.use('/api/v1', recipesRouter)
 app.use('/api/v1', ingredientsRouter)
 
