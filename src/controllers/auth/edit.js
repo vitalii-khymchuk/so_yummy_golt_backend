@@ -10,7 +10,7 @@ const edit = async (req, res) => {
   }
   const { email, avatarUrl } = await AuthService.edit(id, { name })
   const data = { name, avatarUrl, email }
-  res.status(201).json({ code: 201, data })
+  res.status(200).json({ code: 200, message: 'success', data })
 }
 
 module.exports = { edit: asyncHandler(edit) }

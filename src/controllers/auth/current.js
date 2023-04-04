@@ -8,7 +8,7 @@ const current = async (req, res) => {
     await AuthService.current(id)
 
   const data = { id, name, email, avatarUrl, favorites, shoppingList }
-  res.status(200).json({ code: 200, token, data })
+  res.status(200).json({ code: 200, message: 'success', token, data })
 }
 
 module.exports = { current: asyncHandler(current) }

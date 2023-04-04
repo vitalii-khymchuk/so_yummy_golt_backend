@@ -18,8 +18,25 @@ module.exports = {
       },
     ],
     responses: {
-      204: {
+      200: {
         description: 'Delete from favorite success',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: null,
+                  },
+                },
+              ],
+            },
+          },
+        },
       },
       401: {
         description: 'Missing header with authorization token',

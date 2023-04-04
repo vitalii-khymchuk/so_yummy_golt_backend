@@ -20,25 +20,37 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              type: 'array',
-              items: {
-                type: 'string',
-              },
-              example: [
-                'Beef',
-                'Breakfast',
-                'Chicken',
-                'Dessert',
-                'Goat',
-                'Lamb',
-                'Miscellaneous',
-                'Pasta',
-                'Pork',
-                'Seafood',
-                'Side',
-                'Starter',
-                'Vegan',
-                'Vegetarian',
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                      example: [
+                        'Beef',
+                        'Breakfast',
+                        'Chicken',
+                        'Dessert',
+                        'Goat',
+                        'Lamb',
+                        'Miscellaneous',
+                        'Pasta',
+                        'Pork',
+                        'Seafood',
+                        'Side',
+                        'Starter',
+                        'Vegan',
+                        'Vegetarian',
+                      ],
+                    },
+                  },
+                },
               ],
             },
           },

@@ -32,6 +32,7 @@
     "express-async-handler": "^1.2.0",
     "form-data": "^4.0.0",
     "joi": "^17.7.1",
+    "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^9.0.0",
     "module-alias": "^2.2.2",
     "mongoose": "6.9.2",

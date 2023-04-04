@@ -16,7 +16,7 @@ const signup = async (req, res) => {
 
   const data = { name, email, avatarUrl, favorites, shoppingList, recipes }
 
-  res.status(201).json({ status: 201, token, data })
+  res.status(201).json({ code: 201, message: 'success', token, data })
 }
 
 module.exports = { signup: asyncHandler(signup) }

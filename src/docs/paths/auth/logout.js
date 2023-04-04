@@ -16,7 +16,24 @@ module.exports = {
     ],
     responses: {
       200: {
-        description: 'The user is logged out.',
+        description: 'The user is logged out',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: null,
+                  },
+                },
+              ],
+            },
+          },
+        },
       },
       401: {
         description: 'Missing header with authorization token',
