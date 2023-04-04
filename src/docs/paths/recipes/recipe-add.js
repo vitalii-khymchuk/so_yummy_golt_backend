@@ -129,6 +129,25 @@ module.exports = {
     responses: {
       201: {
         description: 'Create success',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: {
+                      $ref: '#/components/schemas/Recipe',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
       },
       400: {
         description: 'Bad request (invalid request body)',

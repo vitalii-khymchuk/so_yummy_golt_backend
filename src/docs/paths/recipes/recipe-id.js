@@ -23,7 +23,19 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              $ref: '#/components/schemas/Recipe',
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: {
+                      $ref: '#/components/schemas/Recipe',
+                    },
+                  },
+                },
+              ],
             },
           },
         },

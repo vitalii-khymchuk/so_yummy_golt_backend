@@ -18,7 +18,7 @@ module.exports = {
       },
     ],
     responses: {
-      204: {
+      200: {
         description: 'The recipe was successfully deleted',
       },
       401: {
