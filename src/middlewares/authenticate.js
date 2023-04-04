@@ -10,7 +10,6 @@ const authenticate = (req, res, next) => {
   const { SECRET_KEY } = process.env
   try {
     const payload = jwt.verify(token, SECRET_KEY)
-    console.log(payload);
     req.user = payload
     next()
   } catch (error) {
