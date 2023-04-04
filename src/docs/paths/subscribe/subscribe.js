@@ -34,15 +34,25 @@ module.exports = {
       },
     },
     responses: {
-      200: {
+      201: {
         description: 'The email was successfully subscribed',
         content: {
           'application/json': {
             schema: {
               type: 'object',
-              example: {
-                status: true,
-              },
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    code: {
+                      example: 201,
+                    },
+                    data: null,
+                  },
+                },
+              ],
             },
           },
         },

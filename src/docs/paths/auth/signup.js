@@ -37,6 +37,34 @@ module.exports = {
     responses: {
       201: {
         description: 'Registration success',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    code: {
+                      example: 201,
+                    },
+                    data: {
+                      $ref: '#/components/schemas/User',
+                    },
+                    token: {
+                      type: 'string',
+                      description: "User's auth token",
+                      example:
+                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
       },
       400: {
         description: 'Bad request (invalid request body)',

@@ -21,24 +21,36 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  category: {
-                    type: 'string',
-                    description: "Categorie's name",
-                    example: 'Breakfast',
-                  },
-                  recipes: {
-                    type: 'array',
-                    description: 'List of category recipes',
-                    items: {
-                      $ref: '#/components/schemas/Recipe',
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: {
+                      type: 'array',
+                      items: {
+                        type: 'object',
+                        properties: {
+                          category: {
+                            type: 'string',
+                            description: "Categorie's name",
+                            example: 'Breakfast',
+                          },
+                          recipes: {
+                            type: 'array',
+                            description: 'List of category recipes',
+                            items: {
+                              $ref: '#/components/schemas/Recipe',
+                            },
+                          },
+                        },
+                      },
                     },
                   },
                 },
-              },
+              ],
             },
           },
         },

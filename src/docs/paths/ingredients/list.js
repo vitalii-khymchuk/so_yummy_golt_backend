@@ -20,11 +20,23 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              type: 'array',
-              description: 'Ingredients list',
-              items: {
-                $ref: '#/components/schemas/Ingredient',
-              },
+              type: 'object',
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: {
+                      type: 'array',
+                      description: 'Ingredients list',
+                      items: {
+                        $ref: '#/components/schemas/Ingredient',
+                      },
+                    },
+                  },
+                },
+              ],
             },
           },
         },

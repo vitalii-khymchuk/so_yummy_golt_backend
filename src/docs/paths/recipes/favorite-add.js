@@ -24,9 +24,16 @@ module.exports = {
           'application/json': {
             schema: {
               type: 'object',
-              example: {
-                status: true,
-              },
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: null,
+                  },
+                },
+              ],
             },
           },
         },

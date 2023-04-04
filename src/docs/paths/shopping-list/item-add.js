@@ -62,9 +62,40 @@ module.exports = {
           'application/json': {
             schema: {
               type: 'object',
-              example: {
-                status: true,
-              },
+              allOf: [
+                {
+                  $ref: '#/components/schemas/SuccessResponse',
+                },
+                {
+                  properties: {
+                    data: {
+                      type: 'object',
+                      properties: {
+                        recipeId: {
+                          type: 'string',
+                          description: "Recipe's ID",
+                          example: '640c2dd963a319ea671e372c',
+                        },
+                        id: {
+                          type: 'string',
+                          description: "Ingredient's item ID",
+                          example: '640c2dd963a319ea671e372c',
+                        },
+                        amount: {
+                          type: 'string',
+                          description: "Ingredient's item amount (quantity)",
+                          example: '1',
+                        },
+                        measure: {
+                          type: 'string',
+                          description: "Ingredient's item measurement units",
+                          example: 'tbsp',
+                        },
+                      },
+                    },
+                  },
+                },
+              ],
             },
           },
         },
