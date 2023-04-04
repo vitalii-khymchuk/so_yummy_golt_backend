@@ -4,7 +4,6 @@ module.exports = {
     summary: 'Register a new user',
     description: 'This route registers the user',
     operationId: 'signup',
-    parameters: [],
     requestBody: {
       description: 'An example of a request object for creating a new user',
       required: true,

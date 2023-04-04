@@ -9,11 +9,6 @@ module.exports = {
         BearerAuth: [],
       },
     ],
-    parameters: [
-      {
-        $ref: '#/components/parameters/authorizationParam',
-      },
-    ],
     requestBody: {
       description: 'An example of a request object for creating a new recipe',
       required: true,
