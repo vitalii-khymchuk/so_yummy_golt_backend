@@ -1,9 +1,9 @@
 const { Ingredient } = require('@models')
 
-class ingredientsService {
-    async getList() {
+class IngredientsService {
+  async getList() {
     return await Ingredient.find()
-}
+  }
 }
 
-module.exports = new ingredientsService
+module.exports = new IngredientsService()
