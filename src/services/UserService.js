@@ -60,6 +60,13 @@ class UserService {
   async current(userId) {
     return await User.findById(userId)
   }
+
+  async getShoppingList(userId) {
+    const { shoppingList } = await User.findById(userId)
+      .select('shoppingList')
+      .populate('shoppingList')
+    return shoppingList
+  }
 }
 
 module.exports = new UserService()
