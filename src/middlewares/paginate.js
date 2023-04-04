@@ -13,10 +13,10 @@
  * const { page, skip, limit } = req.paginatedResponse
  */
 const paginate = async (req, res, next) => {
-  const { PER_PAGE_LIMIT_DEFAUL = 12, PER_PAGE_LIMIT_MAX = 50 } = process.env
+  const { PER_PAGE_LIMIT_DEFAULT = 12, PER_PAGE_LIMIT_MAX = 50 } = process.env
 
   const page = parseInt(req.query.page) || 1
-  let limit = parseInt(req.query.limit) || PER_PAGE_LIMIT_DEFAUL
+  let limit = parseInt(req.query.limit) || PER_PAGE_LIMIT_DEFAULT
 
   if (limit > PER_PAGE_LIMIT_MAX) {
     limit = PER_PAGE_LIMIT_MAX

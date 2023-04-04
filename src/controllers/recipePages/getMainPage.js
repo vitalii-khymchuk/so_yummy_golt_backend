@@ -7,7 +7,7 @@ const getMainPage = async (req, res) => {
     categoriesLimit,
     recipesInCategory,
   })
-  res.status(200).json({ code: 200, data })
+  res.status(200).json({ code: 200, message: 'success', data })
 }
 
 module.exports = { getMainPage: asyncHandler(getMainPage) }

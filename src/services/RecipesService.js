@@ -33,8 +33,14 @@ class RecipesService {
     return await Recipe.findOneAndRemove({ _id, owner })
   }
 
-  async getUserRecipes(userId) {
-    return await Recipe.find({ owner: userId })
+  async getUserRecipes(userId, options = {}) {
+    const data = await Recipe.find(
+      { owner: userId },
+      '-createdAt -updatedAt',
+      options
+    )
+    const total = await Recipe.countDocuments({ owner: userId })
+    return { data, total }
   }
 
   async getPopular(limit) {
