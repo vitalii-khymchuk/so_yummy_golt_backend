@@ -24,20 +24,6 @@ module.exports = {
         example:
           'https://s.gravatar.com/avatar/068de491621f7014bb5f8b3d473f50a3?s=250',
       },
-      token: {
-        type: 'string',
-        description: 'Backend-generated unique json web token',
-        example: 'adsjkasnxz.csdcdfgdvgfhgfdcs.saxsa',
-      },
-      recipes: {
-        type: 'array',
-        description: "User's collection of saved recipes (array of ObjectId)",
-        items: {
-          type: 'string',
-          description: 'Receipt ID',
-          example: '63fa1eb8ed1b46fa6fd8e857',
-        },
-      },
       favorites: {
         type: 'array',
         description:
