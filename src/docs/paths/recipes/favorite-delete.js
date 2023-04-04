@@ -13,9 +13,6 @@ module.exports = {
       {
         $ref: '#/components/parameters/recipeIdParam',
       },
-      {
-        $ref: '#/components/parameters/authorizationParam',
-      },
     ],
     responses: {
       200: {

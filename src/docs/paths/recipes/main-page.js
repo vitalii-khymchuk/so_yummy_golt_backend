@@ -10,11 +10,6 @@ module.exports = {
         BearerAuth: [],
       },
     ],
-    parameters: [
-      {
-        $ref: '#/components/parameters/authorizationParam',
-      },
-    ],
     responses: {
       200: {
         description: 'Information found',

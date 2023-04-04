@@ -19,9 +19,6 @@ module.exports = {
           type: 'string',
         },
       },
-      {
-        $ref: '#/components/parameters/authorizationParam',
-      },
     ],
     responses: {
       200: {

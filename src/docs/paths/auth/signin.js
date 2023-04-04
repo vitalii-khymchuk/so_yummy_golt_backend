@@ -4,7 +4,6 @@ module.exports = {
     summary: 'Login user',
     description: 'This route logs the user in',
     operationId: 'signin',
-    parameters: [],
     requestBody: {
       description: 'An example of a request object for user login',
       required: true,

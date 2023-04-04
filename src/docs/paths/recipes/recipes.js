@@ -11,9 +11,6 @@ module.exports = {
     ],
     parameters: [
       {
-        $ref: '#/components/parameters/authorizationParam',
-      },
-      {
         $ref: '#/components/parameters/limitParam',
       },
       {
