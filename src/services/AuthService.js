@@ -22,10 +22,10 @@ class AuthService {
     const { SECRET_KEY } = process.env
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '24h' })
 
-    const formattedToken = `Bearer ${token}`
+    // const formattedToken = `Bearer ${token}`
 
-    await User.findByIdAndUpdate(newUser._id, { token: formattedToken })
-    newUser.token = formattedToken
+    await User.findByIdAndUpdate(newUser._id, { token })
+    newUser.token = token
     return newUser
   }
 
@@ -41,10 +41,10 @@ class AuthService {
     const payload = { id: user._id, name: user.name, email }
     const { SECRET_KEY } = process.env
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '24h' })
-    const formattedToken = `Bearer ${token}`
+    // const formattedToken = `Bearer ${token}`
 
-    await User.findByIdAndUpdate(user._id, { token: formattedToken })
-    user.token = formattedToken
+    await User.findByIdAndUpdate(user._id, { token })
+    user.token = token
     return user
   }
 
