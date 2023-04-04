@@ -14,7 +14,7 @@ const getMy = async (req, res) => {
 
   const result = paginatedResponse(total, data, limit, page, path)
 
-  res.status(200).json({ code: 200, data: result })
+  res.status(200).json({ code: 200, message: 'success', data: result })
 }
 
 module.exports = { getMy: asyncHandler(getMy) }

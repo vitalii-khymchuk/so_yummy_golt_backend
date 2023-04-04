@@ -3,7 +3,7 @@ const { IngredientsService } = require('@services')
 
 const getAll = async (req, res) => {
   const ingredients = await IngredientsService.getList()
-  res.status(200).json({ code: 200, data: ingredients })
+  res.status(200).json({ code: 200, message: 'success', data: ingredients })
 }
 
 module.exports = { getAll: asyncHandler(getAll) }
