@@ -1,53 +1,53 @@
 const express = require('express')
-
-const { recipesCtrl } = require('@controllers')
-
 const {
-  // bodyValidation,
+  bodyValidation,
   authenticate,
   paginate,
   isValidId,
 } = require('@middlewares')
-// const { authBodySchemas } = require('@models')
+
+const { recipesCtrl: ctrl } = require('@controllers')
+const { recipeSchemas: schemas } = require('@models')
 
 const router = express.Router()
 
-router.get('/recipes', authenticate, paginate, recipesCtrl.getAll)
+router.get('/recipes', authenticate, paginate, ctrl.getAll)
 
 router.get(
   '/recipes/:recipeId',
   authenticate,
   isValidId('recipeId'),
-  recipesCtrl.getOne
+  ctrl.getOne
 )
 
-// router.post(
-//   '/recipes',
-//   authenticate,
-//   bodyValidation(authBodySchemas(authBodySchemas.postRecipe)),
-//   recipesCtrl.postOne
-// )
-// router.delete('/recipes/:recipeId', authenticate, recipesCtrl.deleteOne)
+router.post(
+  '/recipes',
+  authenticate,
+  bodyValidation(schemas.addSchema),
+  ctrl.addOne
+)
 
-// router.get('/recipes/my', authenticate, recipesCtrl.getUserRecipes)
-// router.get('/recipes/main-page', authenticate, recipesCtrl.getMainPageRecipes)
-// router.get('/recipes/popular', authenticate, recipesCtrl.getPopularRecipes)
+// router.delete('/recipes/:recipeId', authenticate, ctrl.deleteOne)
+
+// router.get('/recipes/my', authenticate, ctrl.getUserRecipes)
+// router.get('/recipes/main-page', authenticate, ctrl.getMainPageRecipes)
+// router.get('/recipes/popular', authenticate, ctrl.getPopularRecipes)
 // router.get(
 //   '/recipes/category/:categoryName',
 //   authenticate,
-//   recipesCtrl.getRecipesByCategory
+//   ctrl.getRecipesByCategory
 // )
 
-// router.get('/recipes/my/favorite', authenticate, recipesCtrl.getFavorites)
+// router.get('/recipes/my/favorite', authenticate, ctrl.getFavorites)
 // router.patch(
 //   '/recipes/:recipeId/favorite',
 //   authenticate,
-//   recipesCtrl.patchFavorite
+//   ctrl.patchFavorite
 // )
 // router.delete(
 //   '/recipes/:recipeId/favorite',
 //   authenticate,
-//   recipesCtrl.deleteFavorite
+//   ctrl.deleteFavorite
 // )
 
 module.exports = router
