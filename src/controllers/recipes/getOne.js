@@ -7,8 +7,7 @@ const getOne = async (req, res) => {
   const { recipeId } = req.params
 
   if (!recipeId) {
-    res.status(400)
-    throw new Error('Please provide all required fields')
+    throw HttpError(400, 'Please provide all required fields')
   }
 
   const data = await RecipesService.searchById(recipeId)
