@@ -1,5 +1,6 @@
 const { Recipe } = require('@models')
 const { pipelines } = require('@helpers')
+const ObjectId = require('mongodb').ObjectId
 
 class RecipesService {
   async searchAll(searchParams = {}, searchOptions = {}) {
@@ -22,7 +23,8 @@ class RecipesService {
   }
 
   async searchById(id) {
-    return await Recipe.findById(id)
+    const objId = ObjectId(id)
+    return await Recipe.aggregate(pipelines.addIngredientsFieldsToRecipe(objId))
   }
 
   async createNew(data) {
