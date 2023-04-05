@@ -62,6 +62,7 @@ class UserService {
   }
 
   async getShoppingList(userId) {
+    console.log(userId)
     const { shoppingList } = await User.findById(userId)
       .select('shoppingList')
       .populate('shoppingList')

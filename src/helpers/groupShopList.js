@@ -41,26 +41,25 @@ const compareObjectId = (id1, id2) => {
  */
 const groupShopList = shopList => {
   const newArray = []
-  const gropedArray = groupArray(shopList, 'id')
-  const sortedArray = flatAndSort(gropedArray, 'measure')
+  const groupedArray = groupArray(shopList, 'id')
+  const sortedArray = flatAndSort(groupedArray, 'measure')
   sortedArray.reduce((prev, current, index) => {
     if (
       compareObjectId(prev.id, current.id) &&
       prev.measure === current.measure
     ) {
-      prev = {
-        ...prev,
+      newArray[newArray.length - 1] = {
+        ...newArray[newArray.length - 1],
         recipeId: [...prev.recipeId, current.recipeId],
         amount: Number(prev.amount) + Number(current.amount),
       }
     } else {
-      index !== 0 && newArray.push(prev)
       if (!(current.recipeId instanceof Array)) {
         current.recipeId = [current.recipeId]
       }
-      prev = current
-      index !== 0 && newArray.push(current)
+      newArray.push(current)
     }
+    prev = current
     return prev
   }, {})
   return newArray
