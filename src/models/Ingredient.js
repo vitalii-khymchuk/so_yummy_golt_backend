@@ -4,6 +4,6 @@ const { handleMongooseError } = require('@helpers')
 const ingredientSchema = new Schema()
 ingredientSchema.post('save', handleMongooseError)
 
-const Ingredient = model('ingradient', ingredientSchema)
+const Ingredient = model('ingredient', ingredientSchema)
 
 module.exports = { Ingredient }
