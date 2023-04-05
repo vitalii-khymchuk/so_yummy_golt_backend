@@ -1,16 +1,14 @@
 const asyncHandler = require('express-async-handler')
-const { AuthService } = require('@services')
+const { UserService } = require('@services')
 
 const current = async (req, res) => {
   const { id } = req.user
 
   const { name, email, avatarUrl, favorites, shoppingList, token } =
-    await AuthService.current(id)
+    await UserService.current(id)
 
   const data = { id, name, email, avatarUrl, favorites, shoppingList }
-  res
-    .status(200)
-    .json({ code: 200, message: 'success', token, data })
+  res.status(200).json({ code: 200, message: 'success', token, data })
 }
 
 module.exports = { current: asyncHandler(current) }

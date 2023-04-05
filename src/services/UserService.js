@@ -3,7 +3,7 @@ const { HttpError } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-class AuthService {
+class UserService {
   async signup({ email, name, password, avatarUrl }) {
     const user = await User.findOne({ email })
     if (user) {
@@ -60,6 +60,23 @@ class AuthService {
   async current(userId) {
     return await User.findById(userId)
   }
+
+  async getShoppingList(userId) {
+    const { shoppingList } = await User.findById(userId)
+      .select('shoppingList')
+      .populate('shoppingList')
+    return shoppingList
+  }
+  async createShoppingItem(userId, { id, recipeId, amount, measure }) {
+    const { shoppingList } = await User.findById(userId)
+    shoppingList.unshift({ id, recipeId, amount, measure })
+    const { shoppingList: data } = await User.findByIdAndUpdate(
+      userId,
+      { shoppingList },
+      { new: true }
+    )
+    return data
+  }
 }
 
-module.exports = new AuthService()
+module.exports = new UserService()
