@@ -60,6 +60,7 @@ const groupShopList = shopList => {
       }
       prev = current
       index !== 0 && newArray.push(current)
+      sortedArray.length === 1 && newArray.push(current)
     }
     return prev
   }, {})
