@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose')
 const { handleMongooseError } = require('@helpers')
 const Joi = require('joi')
+Joi.objectId = require('joi-objectid')(Joi)
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -86,8 +87,15 @@ const patchUserData = Joi.object({
   name: Joi.string().min(4).max(25).required(),
 })
 
-const authBodySchemas = { signup, signin, patchUserData }
+const postShoppingListItem = Joi.object({
+  id: Joi.objectId().required(),
+  recipeId: Joi.objectId().required(),
+  amount: Joi.string().min(1).max(10).required(),
+  measure: Joi.string().min(1).max(10).required(),
+})
+
+const userBodySchemas = { signup, signin, patchUserData, postShoppingListItem }
 
 const User = model('user', userSchema)
 
-module.exports = { authBodySchemas, User }
+module.exports = { userBodySchemas, User }

@@ -1,3 +1,4 @@
 const { getList } = require('./getList')
+const { postItem } = require('./postItem')
 
-module.exports = { getList }
+module.exports = { getList, postItem }
