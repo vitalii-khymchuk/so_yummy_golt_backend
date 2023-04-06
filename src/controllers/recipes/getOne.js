@@ -5,12 +5,13 @@ const { RecipesService } = require('@services')
 
 const getOne = async (req, res) => {
   const { recipeId } = req.params
+  const { id: owner } = req.user
 
   if (!recipeId) {
     throw HttpError(400, 'Please provide all required fields')
   }
 
-  const data = await RecipesService.searchById(recipeId)
+  const data = await RecipesService.searchById(recipeId, owner)
 
   if (!data) {
     throw HttpError(404, 'Not found')

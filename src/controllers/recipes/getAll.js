@@ -1,22 +1,29 @@
 const asyncHandler = require('express-async-handler')
 
 const { paginatedResponse } = require('@helpers')
-const { RecipesService } = require('@services')
+const { RecipesService, IngredientsService } = require('@services')
 
 const getAll = async (req, res) => {
   const { path } = req.route
+  const { filter } = req.query
+  const { id: owner } = req.user
+
   const { page, skip, limit } = req.paginatedResponse
 
-  const match = {}
-  const { filter } = req.query
+  const match = {
+    $or: [{ isPublic: true }, { owner }],
+  }
 
   if (filter?.title) {
     match.title = { $regex: filter.title, $options: 'i' }
   }
 
-  // if (filter?.ingredients) {
-  //   match.ingredients = filter.ingredients
-  // }
+  if (filter?.ingredients) {
+    const ids = await IngredientsService.searchIdsByTitle(filter.ingredients)
+    match['ingredients.id'] = {
+      $in: [...ids],
+    }
+  }
 
   const { total, data } = await RecipesService.searchAll(match, {
     skip,
