@@ -94,7 +94,17 @@ const postShoppingListItem = Joi.object({
   measure: Joi.string().min(1).max(10).required(),
 })
 
-const userBodySchemas = { signup, signin, patchUserData, postShoppingListItem }
+const removeShoppingListItem = Joi.object({
+  recipeId: Joi.array().items(Joi.objectId()).required(),
+})
+
+const userBodySchemas = {
+  signup,
+  signin,
+  patchUserData,
+  postShoppingListItem,
+  removeShoppingListItem,
+}
 
 const User = model('user', userSchema)
 
