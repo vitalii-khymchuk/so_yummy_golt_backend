@@ -25,23 +25,29 @@ module.exports = {
                     data: {
                       type: 'array',
                       items: {
-                        type: 'string',
+                        type: 'object',
+                        properties: {
+                          _id: {
+                            type: 'string',
+                            description: 'Category id',
+                            example: '64284d2e5cc669661c595915',
+                          },
+                          category: {
+                            type: 'string',
+                            description: 'Category name',
+                            example: 'Beef',
+                          },
+                        },
                       },
                       example: [
-                        'Beef',
-                        'Breakfast',
-                        'Chicken',
-                        'Dessert',
-                        'Goat',
-                        'Lamb',
-                        'Miscellaneous',
-                        'Pasta',
-                        'Pork',
-                        'Seafood',
-                        'Side',
-                        'Starter',
-                        'Vegan',
-                        'Vegetarian',
+                        {
+                          _id: '64284d2e5cc669661c595915',
+                          category: 'Beef',
+                        },
+                        {
+                          _id: '64284d2e5cc669661c595916',
+                          category: 'Breakfast',
+                        },
                       ],
                     },
                   },

@@ -66,13 +66,6 @@ module.exports = {
             },
           },
         },
-        example: [
-          {
-            id: '640c2dd963a319ea671e372c',
-            amount: '1',
-            measure: 'tbsp',
-          },
-        ],
       },
       thumb: {
         type: 'string',

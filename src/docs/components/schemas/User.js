@@ -39,12 +39,17 @@ module.exports = {
         description: "User's collection of products to shop (array of Objects)",
         items: {
           type: 'object',
-          required: ['id', 'amount', 'measure'],
+          required: ['id', 'recipeId', 'amount', 'measure'],
           properties: {
             id: {
               type: 'string',
               description: "Ingredient's item ID",
               example: '640c2dd963a319ea671e372c',
+            },
+            recipeId: {
+              type: 'string',
+              description: "Recipe's ID",
+              example: 'c2dd963a64ea671372c0319e',
             },
             amount: {
               type: 'string',
