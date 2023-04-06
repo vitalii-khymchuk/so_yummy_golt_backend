@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const { compareObjectId } = require('./compareObjectId')
 
 const groupArray = (array, key) => {
   return Object.values(
@@ -16,16 +16,6 @@ const flatAndSort = (array, sortBy) => {
   return array.flatMap(group =>
     group.sort((a, b) => a[sortBy].localeCompare(b[sortBy]))
   )
-}
-
-const compareObjectId = (id1, id2) => {
-  if (
-    !(id1 instanceof mongoose.Types.ObjectId) ||
-    !(id2 instanceof mongoose.Types.ObjectId)
-  ) {
-    return false
-  }
-  return id1.equals(id2)
 }
 
 /**

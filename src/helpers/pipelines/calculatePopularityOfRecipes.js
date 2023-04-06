@@ -34,6 +34,11 @@ const calculatePopularityOfRecipes = (limit = 4) => {
       $unset: 'owners',
     },
     {
+      $match: {
+        isPublic: true,
+      },
+    },
+    {
       $sort: {
         popularity: -1,
       },

@@ -2,6 +2,7 @@ const { User } = require('@models')
 const { HttpError } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const { compareObjectId } = require('@helpers')
 
 class UserService {
   async signup({ email, name, password, avatarUrl }) {
@@ -62,7 +63,6 @@ class UserService {
   }
 
   async getShoppingList(userId) {
-    console.log(userId)
     const { shoppingList } = await User.findById(userId)
       .select('shoppingList')
       .populate('shoppingList')
@@ -74,6 +74,21 @@ class UserService {
     const { shoppingList: data } = await User.findByIdAndUpdate(
       userId,
       { shoppingList },
+      { new: true }
+    )
+    return data
+  }
+  async removeShoppingItem(userId, itemId, recipeIds) {
+    const { shoppingList } = await User.findById(userId)
+    let filteredList = [...shoppingList]
+    recipeIds.forEach(e => {
+      filteredList = filteredList.filter(({ id, recipeId }) => {
+        return !(compareObjectId(id, itemId) && compareObjectId(e, recipeId))
+      })
+    })
+    const { shoppingList: data } = await User.findByIdAndUpdate(
+      userId,
+      { shoppingList: filteredList },
       { new: true }
     )
     return data
