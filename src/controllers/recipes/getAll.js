@@ -6,10 +6,12 @@ const { RecipesService, IngredientsService } = require('@services')
 const getAll = async (req, res) => {
   const { path } = req.route
   const { filter } = req.query
+  const { id: owner } = req.user
+
   const { page, skip, limit } = req.paginatedResponse
 
   const match = {
-    isPublic: true,
+    $or: [{ isPublic: true }, { owner }],
   }
 
   if (filter?.title) {

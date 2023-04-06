@@ -3,11 +3,12 @@
  * @param {ObjectId} recipeId Mongoose ObjectId() of recipe
  * @returns {array} returns pipeline to aggregation
  */
-const addIngredientsFieldsToRecipe = recipeId => {
+const addIngredientsFieldsToRecipe = (recipeId, owner) => {
   return [
     {
       $match: {
         _id: recipeId,
+        $or: [{ isPublic: true }, { owner }],
       },
     },
     {

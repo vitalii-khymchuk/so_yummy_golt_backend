@@ -22,9 +22,10 @@ class RecipesService {
     }
   }
 
-  async searchById(id) {
-    const objId = ObjectId(id)
-    return await Recipe.aggregate(pipelines.addIngredientsFieldsToRecipe(objId))
+  async searchById(id, owner) {
+    return await Recipe.aggregate(
+      pipelines.addIngredientsFieldsToRecipe(ObjectId(id), ObjectId(owner))
+    )
   }
 
   async createNew(data) {
