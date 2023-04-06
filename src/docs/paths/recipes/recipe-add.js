@@ -49,8 +49,8 @@ module.exports = {
               },
               category: {
                 type: 'string',
-                description: "Recipe's category name",
-                example: 'Breakfast',
+                description: "Recipe's category id",
+                example: '64284d2e5cc669661c595916',
               },
               ingredients: {
                 type: 'array',
