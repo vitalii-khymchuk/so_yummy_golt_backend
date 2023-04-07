@@ -29,15 +29,21 @@ module.exports = {
                         type: 'object',
                         required: ['id', 'amount', 'measure'],
                         properties: {
-                          recipeId: {
-                            type: 'string',
-                            description: "Recipe's ID",
-                            example: '640c2dd963a319ea671e372c',
-                          },
                           id: {
                             type: 'string',
                             description: "Ingredient's item ID",
                             example: '640c2dd963a319ea671e372c',
+                          },
+                          recipeId: {
+                            type: 'array',
+                            description: "Recipe's IDs",
+                            items: {
+                              type: 'string',
+                            },
+                            example: [
+                              '640c2dd963a319ea671e372c',
+                              '6d93a312d71e372c9ea6640c',
+                            ],
                           },
                           amount: {
                             type: 'string',
@@ -53,8 +59,11 @@ module.exports = {
                       },
                       example: [
                         {
-                          recipeId: '319eaa36d79632c71e640c2d',
                           id: '640c2dd963a319ea671e372c',
+                          recipeId: [
+                            '319eaa36d79632c71e640c2d',
+                            '6d93a312d71e372c9ea6640c',
+                          ],
                           amount: '1',
                           measure: 'tbsp',
                         },

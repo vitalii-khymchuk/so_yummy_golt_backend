@@ -1,7 +1,7 @@
 const { UserService } = require('@services')
 const asyncHandler = require('express-async-handler')
 const { isValidObjectId } = require('mongoose')
-const { HttpError, groupShopList } = require('@helpers')
+const { HttpError } = require('@helpers')
 
 const postItem = async (req, res) => {
   const { id, recipeId, amount, measure } = req.body
@@ -16,14 +16,22 @@ const postItem = async (req, res) => {
   ) {
     throw HttpError(400)
   }
-  const data = await UserService.createShoppingItem(userId, {
+  const item = {
+    id,
+    recipeId,
+    amount,
+    measure,
+  }
+  const result = await UserService.createShoppingItem(userId, {
     id,
     recipeId,
     amount,
     measure,
   })
-  const groupedData = groupShopList(data)
-  res.status(201).json({ code: 200, message: 'success', data: groupedData })
+  if (!result) {
+    throw HttpError(500)
+  }
+  res.status(201).json({ code: 201, message: 'success', data: item })
 }
 
 module.exports = { postItem: asyncHandler(postItem) }

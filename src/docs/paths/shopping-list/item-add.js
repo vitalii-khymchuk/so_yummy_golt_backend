@@ -95,6 +95,9 @@ module.exports = {
           },
         },
       },
+      400: {
+        description: 'Missing required fields',
+      },
       401: {
         description: 'Missing header with authorization token',
       },

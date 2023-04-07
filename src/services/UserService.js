@@ -80,6 +80,11 @@ class UserService {
   async removeShoppingItem(userId, itemId, recipeIds) {
     const { shoppingList } = await User.findById(userId)
     let filteredList = [...shoppingList]
+
+    if (!filteredList.find(({ id }) => id === itemId)) {
+      throw HttpError(404)
+    }
+
     recipeIds.forEach(e => {
       filteredList = filteredList.filter(({ id, recipeId }) => {
         return !(compareObjectId(id, itemId) && compareObjectId(e, recipeId))
