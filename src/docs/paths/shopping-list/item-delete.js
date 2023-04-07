@@ -14,6 +14,38 @@ module.exports = {
         $ref: '#/components/parameters/productIdParam',
       },
     ],
+    requestBody: {
+      description: 'An example of a request object to remove product',
+      required: true,
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            description: 'Shopping list product',
+            required: ['recipeId'],
+            properties: {
+              recipeId: {
+                type: 'array',
+                description: "Recipe's IDs",
+                items: {
+                  type: 'string',
+                },
+                example: [
+                  '640c2dd963a319ea671e372c',
+                  '6d93a312d71e372c9ea6640c',
+                ],
+              },
+            },
+            example: {
+              recipeId: [
+                '319eaa36d79632c71e640c2d',
+                '6d93a312d71e372c9ea6640c',
+              ],
+            },
+          },
+        },
+      },
+    },
     responses: {
       200: {
         description: 'Product was successfully deleted',
@@ -34,6 +66,9 @@ module.exports = {
             },
           },
         },
+      },
+      400: {
+        description: 'Missed or empty recipeId array',
       },
       401: {
         description: 'Missing header with authorization token',

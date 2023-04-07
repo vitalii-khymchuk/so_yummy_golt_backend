@@ -41,6 +41,9 @@ module.exports = {
       404: {
         description: 'Not found',
       },
+      409: {
+        description: 'Recipe already in favorites',
+      },
       500: {
         description: 'Server error',
       },

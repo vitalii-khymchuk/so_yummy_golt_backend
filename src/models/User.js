@@ -3,7 +3,7 @@ const { handleMongooseError } = require('@helpers')
 const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
 
-const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+const emailRegexp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
 const userSchema = new Schema(
   {
@@ -44,10 +44,6 @@ const userSchema = new Schema(
     //   type: String,
     //   required: [true, 'Verify token is required'],
     // },
-    receipts: {
-      type: Array,
-      default: [],
-    },
     favorites: {
       type: Array,
       default: [],

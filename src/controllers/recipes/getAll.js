@@ -10,22 +10,20 @@ const getAll = async (req, res) => {
 
   const { page, skip, limit } = req.paginatedResponse
 
-  const match = {
-    $or: [{ isPublic: true }, { owner }],
+  const searchParams = {
+    owner,
   }
 
   if (filter?.title) {
-    match.title = { $regex: filter.title, $options: 'i' }
+    searchParams.title = filter.title
   }
 
   if (filter?.ingredients) {
     const ids = await IngredientsService.searchIdsByTitle(filter.ingredients)
-    match['ingredients.id'] = {
-      $in: [...ids],
-    }
+    searchParams.ingredientsIds = ids
   }
 
-  const { total, data } = await RecipesService.searchAll(match, {
+  const { total, data } = await RecipesService.searchAll(searchParams, {
     skip,
     limit,
   })

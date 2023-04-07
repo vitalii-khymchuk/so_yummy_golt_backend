@@ -34,25 +34,20 @@ router.delete(
   ctrl.deleteOne
 )
 
-// router.get('/recipes/my', authenticate, ctrl.getUserRecipes)
-// router.get('/recipes/main-page', authenticate, ctrl.getMainPageRecipes)
-// router.get('/recipes/popular', authenticate, ctrl.getPopularRecipes)
-// router.get(
-//   '/recipes/category/:categoryName',
-//   authenticate,
-//   ctrl.getRecipesByCategory
-// )
+router.get('/recipes/my/favorite', authenticate, paginate, ctrl.getAllFavorite)
 
-// router.get('/recipes/my/favorite', authenticate, ctrl.getFavorites)
-// router.patch(
-//   '/recipes/:recipeId/favorite',
-//   authenticate,
-//   ctrl.patchFavorite
-// )
-// router.delete(
-//   '/recipes/:recipeId/favorite',
-//   authenticate,
-//   ctrl.deleteFavorite
-// )
+router.patch(
+  '/recipes/:recipeId/favorite',
+  authenticate,
+  isValidId('recipeId'),
+  ctrl.addFavorite
+)
+
+router.delete(
+  '/recipes/:recipeId/favorite',
+  authenticate,
+  isValidId('recipeId'),
+  ctrl.removeFavorite
+)
 
 module.exports = router
