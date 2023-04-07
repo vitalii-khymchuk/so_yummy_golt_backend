@@ -60,7 +60,7 @@ const recipeSchema = new Schema(
     },
     description: {
       type: String,
-      minLength: 20,
+      minLength: 5,
       maxLength: 350,
       required: true,
       trim: true,
@@ -116,7 +116,7 @@ const addSchema = Joi.object({
   category: Joi.objectId().required(),
   area: Joi.string().min(2),
   instructions: Joi.string().min(3).required(),
-  description: Joi.string().min(20).max(350).required(),
+  description: Joi.string().min(5).max(350).required(),
   time: Joi.string().min(1).max(20).required(),
   youtube: Joi.string().min(3).pattern(urlRegExp, urlMessge),
   tags: Joi.array(),

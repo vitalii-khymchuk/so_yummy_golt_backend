@@ -23,8 +23,6 @@ class UserService {
     const { SECRET_KEY } = process.env
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '24h' })
 
-    // const formattedToken = `Bearer ${token}`
-
     await User.findByIdAndUpdate(newUser._id, { token })
     newUser.token = token
     return newUser
@@ -42,7 +40,6 @@ class UserService {
     const payload = { id: user._id, name: user.name, email }
     const { SECRET_KEY } = process.env
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '24h' })
-    // const formattedToken = `Bearer ${token}`
 
     await User.findByIdAndUpdate(user._id, { token })
     user.token = token
@@ -68,6 +65,7 @@ class UserService {
       .populate('shoppingList')
     return shoppingList
   }
+
   async createShoppingItem(userId, { id, recipeId, amount, measure }) {
     const { shoppingList } = await User.findById(userId)
     shoppingList.unshift({ id, recipeId, amount, measure })
@@ -78,6 +76,7 @@ class UserService {
     )
     return data
   }
+
   async removeShoppingItem(userId, itemId, recipeIds) {
     const { shoppingList } = await User.findById(userId)
     let filteredList = [...shoppingList]
@@ -92,6 +91,47 @@ class UserService {
       { new: true }
     )
     return data
+  }
+
+  async getFavoriteList(userId) {
+    return await User.findById(userId).select({ favorites: 1, _id: 0 })
+  }
+
+  async addToFavorite(userId, recipeId, errorHandler) {
+    const { favorites } = await User.findById(userId)
+
+    if (favorites.find(id => id === recipeId)) {
+      throw errorHandler(409, 'Already in favorites')
+    }
+
+    const result = await User.findByIdAndUpdate(userId, {
+      favorites: [...favorites, recipeId],
+    })
+
+    if (!result) {
+      throw errorHandler(500)
+    }
+
+    return true
+  }
+
+  async removeFromFavorite(userId, recipeId, errorHandler) {
+    const { favorites } = await User.findById(userId)
+    if (!favorites.find(id => id === recipeId)) {
+      throw errorHandler(404)
+    }
+
+    const _favorites = favorites.filter(id => id !== recipeId)
+
+    const result = await User.findByIdAndUpdate(userId, {
+      favorites: [..._favorites],
+    })
+
+    if (!result) {
+      throw errorHandler(500)
+    }
+
+    return true
   }
 }
 
