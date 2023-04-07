@@ -6,6 +6,7 @@ const { groupShopList } = require('./groupShopList')
 const { compareObjectId } = require('./compareObjectId')
 const { GOOGLE_BUCKETS } = require('./googleBuckets')
 const { removeFileLocally } = require('./removeFileLocally')
+const { resizeImage } = require('./resizeImage')
 const pipelines = require('./pipelines')
 
 module.exports = {
@@ -16,6 +17,7 @@ module.exports = {
   groupShopList,
   compareObjectId,
   removeFileLocally,
+  resizeImage,
   GOOGLE_BUCKETS,
   pipelines,
 }

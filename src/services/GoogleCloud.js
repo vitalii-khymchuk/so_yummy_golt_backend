@@ -6,6 +6,9 @@ const storage = new Storage()
 const uploadFile = async (path, filename, bucket) => {
   const options = {
     destination: filename,
+    metadata: {
+      cacheControl: 'public, max-age=0',
+    },
   }
   try {
     if (!path || !filename || !bucket) {
