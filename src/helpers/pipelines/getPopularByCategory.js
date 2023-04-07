@@ -15,8 +15,11 @@ const getPopularByCategory = ({ limit = 8, categoryName }) => {
         'category.category': { $regex: new RegExp(categoryName, 'i') },
       },
     },
+    {
+      $limit: Number(limit),
+    },
   ]
-  return [...calculatePopularityOfRecipes(limit), ...filterByCategory]
+  return [...calculatePopularityOfRecipes(null), ...filterByCategory]
 }
 
 module.exports = { getPopularByCategory }
