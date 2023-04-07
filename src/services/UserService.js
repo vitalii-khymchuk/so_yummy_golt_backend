@@ -61,21 +61,21 @@ class UserService {
   }
 
   async getShoppingList(userId) {
-    const [{ shoppingList }] = await User.aggregate(
+    const [user] = await User.aggregate(
       pipelines.getShoppingList(mongoose.Types.ObjectId(userId))
     )
-    return shoppingList
+    return user ? user.shoppingList : []
   }
 
   async createShoppingItem(userId, { id, recipeId, amount, measure }) {
+    id = mongoose.Types.ObjectId(id)
+    recipeId = mongoose.Types.ObjectId(recipeId)
+
     const { shoppingList } = await User.findById(userId)
-    shoppingList.unshift({ id, recipeId, amount, measure })
-    const { shoppingList: data } = await User.findByIdAndUpdate(
-      userId,
-      { shoppingList },
-      { new: true }
-    )
-    return data
+    const newItem = { id, recipeId, amount, measure }
+    shoppingList.unshift(newItem)
+    await User.findByIdAndUpdate(userId, { shoppingList }, { new: true })
+    return newItem
   }
 
   async removeShoppingItem(userId, itemId, recipeIds) {
