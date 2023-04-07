@@ -1,8 +1,7 @@
 const { User } = require('@models')
-const { HttpError } = require('@helpers')
+const { HttpError, compareObjectId } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { compareObjectId, pipelines } = require('@helpers')
 const mongoose = require('mongoose')
 
 class UserService {
