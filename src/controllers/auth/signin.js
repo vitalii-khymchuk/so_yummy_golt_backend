@@ -13,7 +13,7 @@ const signin = async (req, res) => {
 
   const data = { name, email, avatarUrl, favorites, shoppingList, recipes }
 
-  res.status(201).json({ code: 201, message: 'success', token, data })
+  res.status(200).json({ code: 200, message: 'success', token, data })
 }
 
 module.exports = { signin: asyncHandler(signin) }
