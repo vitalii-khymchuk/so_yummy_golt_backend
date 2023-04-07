@@ -1,9 +1,7 @@
 const { User } = require('@models')
-const { HttpError } = require('@helpers')
+const { HttpError, compareObjectId } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { compareObjectId } = require('@helpers')
-
 class UserService {
   async signup({ email, name, password, avatarUrl }) {
     const user = await User.findOne({ email })

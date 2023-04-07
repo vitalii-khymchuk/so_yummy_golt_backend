@@ -1,6 +1,6 @@
 const express = require('express')
 const { authCtrl } = require('@controllers')
-const { bodyValidation, authenticate } = require('@middlewares')
+const { bodyValidation, authenticate, handleFormData } = require('@middlewares')
 const { userBodySchemas } = require('@models')
 
 const router = express.Router()
@@ -17,8 +17,9 @@ router.post(
 )
 router.patch(
   '/auth/edit',
-  bodyValidation(userBodySchemas.patchUserData),
   authenticate,
+  // bodyValidation(userBodySchemas.patchUserData),
+  handleFormData.single('avatar'),
   authCtrl.edit
 )
 router.get('/auth/current', authenticate, authCtrl.current)

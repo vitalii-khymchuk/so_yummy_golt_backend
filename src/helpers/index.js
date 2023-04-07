@@ -4,6 +4,8 @@ const { handleMongooseError } = require('./handleMongooseError')
 const { isEverythingUnique } = require('./isEverythingUnique')
 const { groupShopList } = require('./groupShopList')
 const { compareObjectId } = require('./compareObjectId')
+const { GOOGLE_BUCKETS } = require('./googleBuckets')
+const { uploadToCloud } = require('./uploadToCloud')
 const pipelines = require('./pipelines')
 
 module.exports = {
@@ -13,5 +15,7 @@ module.exports = {
   isEverythingUnique,
   groupShopList,
   compareObjectId,
+  uploadToCloud,
+  GOOGLE_BUCKETS,
   pipelines,
 }
