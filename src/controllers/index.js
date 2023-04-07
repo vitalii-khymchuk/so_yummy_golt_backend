@@ -4,6 +4,7 @@ const ingredientsCtrl = require('./ingredients')
 const recipePagesCtrl = require('./recipePages')
 const categoryListCtrl = require('./categoryList')
 const shoppingListCtrl = require('./shoppingList')
+const subscribeCtrl = require('./subscribe')
 
 module.exports = {
   authCtrl,
@@ -12,4 +13,5 @@ module.exports = {
   recipePagesCtrl,
   categoryListCtrl,
   shoppingListCtrl,
+  subscribeCtrl,
 }
