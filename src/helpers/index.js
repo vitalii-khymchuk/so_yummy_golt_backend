@@ -5,7 +5,7 @@ const { isEverythingUnique } = require('./isEverythingUnique')
 const { groupShopList } = require('./groupShopList')
 const { compareObjectId } = require('./compareObjectId')
 const { GOOGLE_BUCKETS } = require('./googleBuckets')
-const { uploadToCloud } = require('./uploadToCloud')
+const { removeFileLocally } = require('./removeFileLocally')
 const pipelines = require('./pipelines')
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
   isEverythingUnique,
   groupShopList,
   compareObjectId,
-  uploadToCloud,
+  removeFileLocally,
   GOOGLE_BUCKETS,
   pipelines,
 }
