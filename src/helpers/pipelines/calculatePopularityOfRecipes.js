@@ -6,7 +6,7 @@
  * @returns {array} returns pipeline to aggregation
  */
 const calculatePopularityOfRecipes = (limit = 4) => {
-  return [
+  const pipeline = [
     {
       $lookup: {
         from: 'users',
@@ -43,10 +43,15 @@ const calculatePopularityOfRecipes = (limit = 4) => {
         popularity: -1,
       },
     },
-    {
-      $limit: Number(limit),
-    },
   ]
+
+  if (limit) {
+    pipeline.push({
+      $limit: Number(limit),
+    })
+  }
+
+  return pipeline
 }
 
 module.exports = { calculatePopularityOfRecipes }
