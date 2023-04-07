@@ -11,6 +11,7 @@ const {
   recipePagesRouter,
   categoryListRouter,
   shoppingListRouter,
+  subscribeRouter,
 } = require('@routes/api')
 
 require('colors')
@@ -33,6 +34,7 @@ app.use('/api/v1', categoryListRouter)
 app.use('/api/v1', recipesRouter)
 app.use('/api/v1', ingredientsRouter)
 app.use('/api/v1', shoppingListRouter)
+app.use('/api/v1', subscribeRouter)
 
 app.use((req, res) => {
   res.status(404).json({ code: 404, message: 'Not found' })
