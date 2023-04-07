@@ -18,8 +18,8 @@ router.post(
 router.patch(
   '/auth/edit',
   authenticate,
-  // bodyValidation(userBodySchemas.patchUserData),
   handleFormData.single('avatar'),
+  bodyValidation(userBodySchemas.patchUserData),
   authCtrl.edit
 )
 router.get('/auth/current', authenticate, authCtrl.current)
