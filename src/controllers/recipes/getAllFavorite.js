@@ -11,17 +11,13 @@ const getAllFavorite = async (req, res) => {
 
   const { favorites: ids } = await UserService.getFavoriteList(owner)
 
-  const match = {
-    $or: [{ isPublic: true }, { owner }],
-    _id: {
-      $in: [...ids],
-    },
-  }
-
-  const { total, data } = await RecipesService.searchAll(match, {
-    skip,
-    limit,
-  })
+  const { total, data } = await RecipesService.searchAll(
+    { ids },
+    {
+      skip,
+      limit,
+    }
+  )
 
   const result = paginatedResponse(total, data, limit, page, path)
 

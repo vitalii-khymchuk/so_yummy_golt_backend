@@ -3,9 +3,36 @@ const { pipelines } = require('@helpers')
 const ObjectId = require('mongodb').ObjectId
 
 class RecipesService {
-  async searchAll(searchParams = {}, searchOptions = {}) {
+  getSearchMatch(searchParams) {
+    const { owner, title, ingredientsIds, ids } = searchParams
+
+    const match = {
+      $or: [{ isPublic: true }, { owner }],
+    }
+
+    if (title) {
+      match.title = { $regex: title, $options: 'i' }
+    }
+
+    if (ingredientsIds) {
+      match['ingredients.id'] = {
+        $in: [...ingredientsIds],
+      }
+    }
+
+    if (ids) {
+      match._id = {
+        $in: [...ids],
+      }
+    }
+
+    return match
+  }
+
+  async searchAll(searchParams, searchOptions = {}) {
+    const match = this.getSearchMatch(searchParams)
     const data = await Recipe.find(
-      searchParams,
+      match,
       '-createdAt -updatedAt',
       searchOptions
     )
@@ -14,7 +41,7 @@ class RecipesService {
       throw new Error('Database error')
     }
 
-    const total = await Recipe.countDocuments(searchParams)
+    const total = await Recipe.countDocuments(match)
 
     return {
       total,
