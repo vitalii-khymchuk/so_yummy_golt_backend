@@ -68,6 +68,7 @@ class UserService {
       .populate('shoppingList')
     return shoppingList
   }
+
   async createShoppingItem(userId, { id, recipeId, amount, measure }) {
     const { shoppingList } = await User.findById(userId)
     shoppingList.unshift({ id, recipeId, amount, measure })
@@ -78,6 +79,7 @@ class UserService {
     )
     return data
   }
+
   async removeShoppingItem(userId, itemId, recipeIds) {
     const { shoppingList } = await User.findById(userId)
     let filteredList = [...shoppingList]
