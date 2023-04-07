@@ -8,6 +8,9 @@ const uploadFile = async (path, filename, bucket) => {
     destination: filename,
   }
   try {
+    if (!path || !filename || !bucket) {
+      return Promise.reject('Pass required arguments')
+    }
     const [data] = await storage.bucket(bucket).upload(path, options)
     console.log(`${filename} uploaded to ${bucket}`)
     return `https://storage.googleapis.com/${bucket}/${data.metadata.name}`
