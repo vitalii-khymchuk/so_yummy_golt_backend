@@ -4,6 +4,7 @@ const ingredientsRouter = require('./ingredients')
 const recipePagesRouter = require('./recipesPages')
 const categoryListRouter = require('./categoryList')
 const shoppingListRouter = require('./shoppingList')
+const subscribeRouter = require('./subscribe')
 
 module.exports = {
   authRouter,
@@ -12,4 +13,5 @@ module.exports = {
   recipePagesRouter,
   categoryListRouter,
   shoppingListRouter,
+  subscribeRouter,
 }
