@@ -92,6 +92,47 @@ class UserService {
     )
     return data
   }
+
+  async getFavoriteList(userId) {
+    return await User.findById(userId).select({ favorites: 1, _id: 0 })
+  }
+
+  async addToFavorite(userId, recipeId, errorHandler) {
+    const { favorites } = await User.findById(userId)
+
+    if (favorites.find(id => id === recipeId)) {
+      throw errorHandler(409, 'Already in favorites')
+    }
+
+    const result = await User.findByIdAndUpdate(userId, {
+      favorites: [...favorites, recipeId],
+    })
+
+    if (!result) {
+      throw errorHandler(500)
+    }
+
+    return true
+  }
+
+  async removeFromFavorite(userId, recipeId, errorHandler) {
+    const { favorites } = await User.findById(userId)
+    if (!favorites.find(id => id === recipeId)) {
+      throw errorHandler(404)
+    }
+
+    const _favorites = favorites.filter(id => id !== recipeId)
+
+    const result = await User.findByIdAndUpdate(userId, {
+      favorites: [..._favorites],
+    })
+
+    if (!result) {
+      throw errorHandler(500)
+    }
+
+    return true
+  }
 }
 
 module.exports = new UserService()
