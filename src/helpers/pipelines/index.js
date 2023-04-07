@@ -7,6 +7,7 @@ const {
 } = require('./calculatePopularityOfRecipes')
 const { mainPage } = require('./mainPage')
 const { getPopularByCategory } = require('./getPopularByCategory')
+const { getShoppingList } = require('./getShoppingList')
 
 module.exports = {
   addCheckedFieldsToRecipes,
@@ -14,4 +15,5 @@ module.exports = {
   calculatePopularityOfRecipes,
   mainPage,
   getPopularByCategory,
+  getShoppingList,
 }

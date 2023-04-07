@@ -2,7 +2,8 @@ const { User } = require('@models')
 const { HttpError } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { compareObjectId } = require('@helpers')
+const { compareObjectId, pipelines } = require('@helpers')
+const mongoose = require('mongoose')
 
 class UserService {
   async signup({ email, name, password, avatarUrl }) {
@@ -60,9 +61,9 @@ class UserService {
   }
 
   async getShoppingList(userId) {
-    const { shoppingList } = await User.findById(userId)
-      .select('shoppingList')
-      .populate('shoppingList')
+    const [{ shoppingList }] = await User.aggregate(
+      pipelines.getShoppingList(mongoose.Types.ObjectId(userId))
+    )
     return shoppingList
   }
 
