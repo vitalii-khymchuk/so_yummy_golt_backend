@@ -88,7 +88,7 @@ class UserService {
     const { shoppingList } = await User.findById(userId)
     let filteredList = [...shoppingList]
 
-    if (!filteredList.find(({ id }) => id === itemId)) {
+    if (!filteredList.find(({ id }) => compareObjectId(id, itemId))) {
       throw HttpError(404)
     }
 
