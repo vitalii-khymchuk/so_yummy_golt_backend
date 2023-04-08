@@ -1,5 +1,5 @@
 const { User } = require('@models')
-const { HttpError, compareObjectId } = require('@helpers')
+const { HttpError, compareObjectId, pipelines } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
