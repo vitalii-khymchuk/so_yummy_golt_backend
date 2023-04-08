@@ -1,4 +1,4 @@
-//Apply to User model
+// Apply to User model
 
 /**
  * addCheckedFieldsToRecipes
@@ -13,30 +13,37 @@ const getShoppingList = userId => {
       },
     },
     {
-      $unwind: {
-        path: '$shoppingList',
-      },
-    },
-    {
       $lookup: {
         from: 'ingredients',
         localField: 'shoppingList.id',
         foreignField: '_id',
-        as: 'shoppingList.ingr_inf',
+        as: 'ingr_inf',
       },
     },
     {
-      $unwind: {
-        path: '$shoppingList.ingr_inf',
-      },
-    },
-    {
-      $group: {
-        _id: '$_id',
+      $set: {
         shoppingList: {
-          $push: '$shoppingList',
+          $map: {
+            input: '$shoppingList',
+            in: {
+              $mergeObjects: [
+                '$$this',
+                {
+                  $arrayElemAt: [
+                    '$ingr_inf',
+                    {
+                      $indexOfArray: ['$ingr_inf._id', '$$this.id'],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         },
       },
+    },
+    {
+      $unset: ['ingr_inf', 'shoppingList._id', 'shoppingList.t'],
     },
   ]
 }
