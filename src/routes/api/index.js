@@ -1,3 +1,4 @@
+const docsRouter = require('./docs')
 const authRouter = require('./auth')
 const recipesRouter = require('./recipes')
 const ingredientsRouter = require('./ingredients')
@@ -7,6 +8,7 @@ const shoppingListRouter = require('./shoppingList')
 const subscribeRouter = require('./subscribe')
 
 module.exports = {
+  docsRouter,
   authRouter,
   recipesRouter,
   ingredientsRouter,
