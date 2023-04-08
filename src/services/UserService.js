@@ -121,7 +121,7 @@ class UserService {
     })
 
     if (!result) {
-      throw errorHandler(500)
+      throw new Error('Database error')
     }
 
     return true
@@ -140,7 +140,7 @@ class UserService {
     })
 
     if (!result) {
-      throw errorHandler(500)
+      throw new Error('Database error')
     }
 
     return true
