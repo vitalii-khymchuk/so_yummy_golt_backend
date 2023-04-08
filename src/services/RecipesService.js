@@ -53,6 +53,9 @@ class RecipesService {
     const [data] = await Recipe.aggregate(
       pipelines.addIngredientsFieldsToRecipe(ObjectId(id), ObjectId(owner))
     )
+    if (!data) {
+      throw new Error('Database error')
+    }
     return data
   }
 
