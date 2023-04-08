@@ -1,10 +1,11 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
-const swaggerUI = require('swagger-ui-express')
-const docs = require('@src/docs')
 const { errorHandler } = require('@middlewares')
+require('colors')
+
 const {
+  docsRouter,
   authRouter,
   recipesRouter,
   ingredientsRouter,
@@ -13,8 +14,6 @@ const {
   shoppingListRouter,
   subscribeRouter,
 } = require('@routes/api')
-
-require('colors')
 
 const app = express()
 
@@ -26,8 +25,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/', express.static('./public'))
-app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(docs))
 
+app.use('/api/v1', docsRouter)
 app.use('/api/v1', authRouter)
 app.use('/api/v1', recipePagesRouter)
 app.use('/api/v1', categoryListRouter)
