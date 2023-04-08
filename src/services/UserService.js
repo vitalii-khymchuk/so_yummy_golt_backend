@@ -1,4 +1,5 @@
 const { User } = require('@models')
+const { getUserRecipes } = require('./RecipesService')
 const { HttpError, compareObjectId, pipelines } = require('@helpers')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -56,7 +57,13 @@ class UserService {
   }
 
   async current(userId) {
-    return await User.findById(userId)
+    const user = await User.findById(userId)
+    const { total: recipesQt } = await getUserRecipes(userId)
+    const createdAtUnix = new Date(user.createdAt).getTime()
+    const msInDay = 24 * 60 * 60 * 1000
+    const daysInApp = Math.floor((Date.now() - createdAtUnix) / msInDay)
+    const favoritesQt = user.favorites.length
+    return { ...user._doc, daysInApp, recipesQt, favoritesQt }
   }
 
   async getShoppingList(userId) {
