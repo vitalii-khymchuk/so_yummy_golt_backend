@@ -5,23 +5,36 @@ const { HttpError } = require('@helpers')
 const uploadDir = path.resolve('./tmp')
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir)
-  },
+  destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
-    const extensions = ['.jpg', '.jpeg', '.png', '.gif']
     const { id } = req.user
-    const fileName = `${id}_${file.originalname}`
-
-    if (!extensions.some(e => fileName.toLowerCase().endsWith(e))) {
-      cb(HttpError(400, 'Invalid  extension type'))
-    } else {
-      cb(null, fileName)
-    }
+    const fileName = `${id}_${file.originalname
+      .toLowerCase()
+      .split(' ')
+      .join('-')}`
+    cb(null, fileName)
   },
-  limits: { fileSize: 5048576 },
 })
 
-const handleFormData = multer({ storage })
+const limits = { fileSize: 5048576 }
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
+  ) {
+    cb(null, true)
+  } else {
+    cb(null, false)
+    return cb(HttpError(400, 'Only .png, .jpg and .jpeg format allowed!'))
+  }
+}
+
+const handleFormData = multer({
+  storage,
+  limits,
+  fileFilter,
+})
 
 module.exports = { handleFormData }
