@@ -1,7 +1,14 @@
 const asyncHandler = require('express-async-handler')
 
-const { HttpError, isEverythingUnique } = require('@helpers')
-const { RecipesService } = require('@services')
+const {
+  HttpError,
+  isEverythingUnique,
+  GOOGLE_BUCKETS,
+  removeFileLocally,
+  resizeImage,
+} = require('@helpers')
+
+const { RecipesService, GoogleCloud } = require('@services')
 
 const addOne = async (req, res) => {
   const { title, category, instructions, description, time, ingredients } =
@@ -20,15 +27,30 @@ const addOne = async (req, res) => {
   if (!isUniqueIngredients) {
     throw HttpError(400, 'Ingredients contains a duplicate value')
   }
+
   // TODO: Implement images upload
-  const encodedTitle = encodeURIComponent(title)
-  const thumb = `https://placehold.co/700x700?text=${encodedTitle}`
-  const preview = `https://placehold.co/350x350?text=${encodedTitle}`
   const { id: owner } = req.user
+  const { path, filename } = req.file
+  const [extension] = filename.split('.').reverse()
+  const cloudFilename = `thumb_${owner}.${extension}`
+
+  await resizeImage(path, 350, 350)
+  const thumb = await GoogleCloud.uploadFile(
+    path,
+    cloudFilename,
+    GOOGLE_BUCKETS.RECIPES_IMAGES
+  )
+
+  await removeFileLocally(path)
+
+  // const encodedTitle = encodeURIComponent(title)
+  // const thumb = `https://placehold.co/700x700?text=${encodedTitle}`
+  // const preview = `https://placehold.co/350x350?text=${encodedTitle}`
+
+  // const { id: owner } = req.user
   const data = await RecipesService.createNew({
     ...req.body,
     thumb,
-    preview,
     owner,
   })
   if (!data) {

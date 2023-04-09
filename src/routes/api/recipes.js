@@ -4,6 +4,7 @@ const {
   authenticate,
   paginate,
   isValidId,
+  handleFormData,
 } = require('@middlewares')
 
 const { recipesCtrl: ctrl } = require('@controllers')
@@ -23,6 +24,7 @@ router.get(
 router.post(
   '/recipes',
   authenticate,
+  handleFormData.single('thumb'),
   bodyValidation(schemas.addSchema),
   ctrl.addOne
 )
@@ -40,14 +42,14 @@ router.patch(
   '/recipes/:recipeId/favorite',
   authenticate,
   isValidId('recipeId'),
-  ctrl.addFavorite
+  ctrl.updateFavorite
 )
 
 router.delete(
   '/recipes/:recipeId/favorite',
   authenticate,
   isValidId('recipeId'),
-  ctrl.removeFavorite
+  ctrl.updateFavorite
 )
 
 module.exports = router
