@@ -71,7 +71,6 @@ const recipeSchema = new Schema(
     },
     preview: {
       ...urlSchema,
-      required: true,
     },
     time: {
       type: String,
