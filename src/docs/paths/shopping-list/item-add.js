@@ -52,7 +52,7 @@ module.exports = {
     },
     responses: {
       201: {
-        description: 'Add to favorite success',
+        description: 'Add to shopping list success',
         content: {
           'application/json': {
             schema: {

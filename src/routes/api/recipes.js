@@ -40,14 +40,14 @@ router.patch(
   '/recipes/:recipeId/favorite',
   authenticate,
   isValidId('recipeId'),
-  ctrl.addFavorite
+  ctrl.updateFavorite
 )
 
 router.delete(
   '/recipes/:recipeId/favorite',
   authenticate,
   isValidId('recipeId'),
-  ctrl.removeFavorite
+  ctrl.updateFavorite
 )
 
 module.exports = router

@@ -27,7 +27,35 @@ module.exports = {
                 },
                 {
                   properties: {
-                    data: null,
+                    data: {
+                      type: 'object',
+                      allOf: [
+                        {
+                          $ref: '#/components/schemas/Recipe',
+                        },
+                        {
+                          properties: {
+                            ingredients: {
+                              type: 'array',
+                              items: {
+                                type: 'object',
+                                allOf: [
+                                  {
+                                    $ref: '#/components/schemas/Ingredient',
+                                  },
+                                  {
+                                    // TODO: fix issue with `schema rendering`
+                                    properties: {
+                                      id: null,
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          },
+                        },
+                      ],
+                    },
                   },
                 },
               ],

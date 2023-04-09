@@ -50,9 +50,13 @@ class RecipesService {
   }
 
   async searchById(id, owner) {
-    return await Recipe.aggregate(
+    const [data] = await Recipe.aggregate(
       pipelines.addIngredientsFieldsToRecipe(ObjectId(id), ObjectId(owner))
     )
+    if (!data) {
+      throw new Error('Database error')
+    }
+    return data
   }
 
   async createNew(data) {

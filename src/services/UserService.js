@@ -88,7 +88,7 @@ class UserService {
     const { shoppingList } = await User.findById(userId)
     let filteredList = [...shoppingList]
 
-    if (!filteredList.find(({ id }) => id === itemId)) {
+    if (!filteredList.find(({ id }) => compareObjectId(id, itemId))) {
       throw HttpError(404)
     }
 
@@ -121,7 +121,7 @@ class UserService {
     })
 
     if (!result) {
-      throw errorHandler(500)
+      throw new Error('Database error')
     }
 
     return true
@@ -140,7 +140,7 @@ class UserService {
     })
 
     if (!result) {
-      throw errorHandler(500)
+      throw new Error('Database error')
     }
 
     return true
