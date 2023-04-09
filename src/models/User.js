@@ -87,7 +87,7 @@ const postShoppingListItem = Joi.object({
   id: Joi.objectId().required(),
   recipeId: Joi.objectId().required(),
   amount: Joi.string().min(1).max(10).required(),
-  measure: Joi.string().min(1).max(10).required(),
+  measure: Joi.string().min(1).max(10),
 })
 
 const removeShoppingListItem = Joi.object({
