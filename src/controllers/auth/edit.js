@@ -26,7 +26,7 @@ const edit = async (req, res) => {
     GOOGLE_BUCKETS.USER_AVATARS
   )
   await removeFileLocally(path)
-  const data = { name, avatar }
+  const data = { name, avatarUrl: avatar }
   res.status(200).json({ code: 200, message: 'success', data })
 }
 
