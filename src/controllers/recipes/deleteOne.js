@@ -9,11 +9,11 @@ const deleteOne = async (req, res) => {
     throw HttpError(400, 'Please provide all required fields')
   }
   const { id: owner } = req.user
-  const result = await RecipesService.removeOwnById(recipeId, owner)
-  if (!result) {
+  const data = await RecipesService.removeOwnById(recipeId, owner)
+  if (!data) {
     throw HttpError(404, 'Not found')
   }
-  res.status(200).json({ code: 200, message: 'success' })
+  res.status(200).json({ code: 200, message: 'success', data })
 }
 
 module.exports = { deleteOne: asyncHandler(deleteOne) }
