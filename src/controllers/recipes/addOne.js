@@ -28,9 +28,11 @@ const addOne = async (req, res) => {
     throw HttpError(400, 'Ingredients contains a duplicate value')
   }
 
-  // TODO: Implement images upload
-  const { id: owner } = req.user
+  if (!req.file) {
+    throw HttpError(400, 'Please provide a recipe thumbnail')
+  }
   const { path, filename } = req.file
+  const { id: owner } = req.user
   const [extension] = filename.split('.').reverse()
   const cloudFilename = `thumb_${owner}.${extension}`
 
