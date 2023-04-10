@@ -86,8 +86,8 @@ const patchUserData = Joi.object({
 const postShoppingListItem = Joi.object({
   id: Joi.objectId().required(),
   recipeId: Joi.objectId().required(),
-  amount: Joi.string().min(0).max(10).required(),
-  measure: Joi.string().min(0).max(10).required(),
+  amount: Joi.string().required(),
+  measure: Joi.string().required(),
 })
 
 const removeShoppingListItem = Joi.object({
