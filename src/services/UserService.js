@@ -88,7 +88,11 @@ class UserService {
     const { shoppingList } = await User.findById(userId)
     let filteredList = [...shoppingList]
 
-    if (!filteredList.find(({ id }) => compareObjectId(id, itemId))) {
+    const itemToRemove = filteredList.find(({ id }) =>
+      compareObjectId(id, itemId)
+    )
+
+    if (!itemToRemove) {
       throw HttpError(404)
     }
 
@@ -97,12 +101,12 @@ class UserService {
         return !(compareObjectId(id, itemId) && compareObjectId(e, recipeId))
       })
     })
-    const { shoppingList: data } = await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       userId,
       { shoppingList: filteredList },
       { new: true }
     )
-    return data
+    return itemToRemove
   }
 
   async getFavoriteList(userId) {
