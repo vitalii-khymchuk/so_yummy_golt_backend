@@ -1,8 +1,7 @@
 const { google } = require('googleapis')
 
-const REDIRECT_URL = 'http://localhost:3001/api/v1/auth/google/callback'
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env
-
+const REDIRECT_URL = 'http://localhost:3001/api/v1/auth/google/callback'
 const OAuth2 = google.auth.OAuth2
 
 const oauth2Client = new OAuth2(
@@ -12,21 +11,24 @@ const oauth2Client = new OAuth2(
 )
 
 const verify = async token => {
-  const CLIENT_ID = process.env.GOOGLE_CLIENT_ID
+  console.log('token here', token)
   try {
     const ticket = await oauth2Client.verifyIdToken({
       idToken: token,
-      audience: CLIENT_ID,
+      audience: GOOGLE_CLIENT_ID,
     })
+
     const payload = ticket.getPayload()
     if (payload.email_verified) {
+      console.log(payload)
       return payload
     } else {
       throw new Error('Email address not verified')
     }
   } catch (error) {
-    return Promise.reject(error)
+    console.log('qwe', error)
+    throw new Error(error)
   }
 }
 
-module.exports = { oauth2Client, verify }
+module.exports = { verify }
