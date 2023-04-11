@@ -10,7 +10,7 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: true,
-      minLength: 4,
+      minLength: 2,
       maxLength: 25,
       trim: true,
     },
@@ -65,7 +65,7 @@ const signup = Joi.object({
     .email({ tlds: { deny: ['ru'] } })
     .pattern(emailRegexp)
     .required(),
-  name: Joi.string().min(4).max(25).required(),
+  name: Joi.string().min(2).max(25).required(),
   password: Joi.string().min(6).alphanum().required(),
 })
 
@@ -80,14 +80,14 @@ const signin = Joi.object({
 })
 
 const patchUserData = Joi.object({
-  name: Joi.string().min(3).max(25).required(),
+  name: Joi.string().min(2).max(25).required(),
 })
 
 const postShoppingListItem = Joi.object({
   id: Joi.objectId().required(),
   recipeId: Joi.objectId().required(),
-  amount: Joi.string().required(),
-  measure: Joi.string().required(),
+  amount: Joi.string().max(100),
+  measure: Joi.string().max(100),
 })
 
 const removeShoppingListItem = Joi.object({
