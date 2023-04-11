@@ -11,7 +11,6 @@ const oauth2Client = new OAuth2(
 )
 
 const verify = async token => {
-  console.log('token here', token)
   try {
     const ticket = await oauth2Client.verifyIdToken({
       idToken: token,
@@ -20,13 +19,12 @@ const verify = async token => {
 
     const payload = ticket.getPayload()
     if (payload.email_verified) {
-      console.log(payload)
       return payload
     } else {
       throw new Error('Email address not verified')
     }
   } catch (error) {
-    console.log('qwe', error)
+    console.log(error)
     throw new Error(error)
   }
 }
