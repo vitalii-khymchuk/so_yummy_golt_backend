@@ -16,8 +16,7 @@ router.post(
   authCtrl.signin
 )
 
-router.get('/auth/google/signin', authCtrl.signInGoogle)
-router.get('/auth/google/callback', authCtrl.signInGoogleSuccess)
+router.post('/auth/google/signin', authCtrl.signInGoogle)
 
 router.patch(
   '/auth/edit',
