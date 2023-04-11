@@ -6,6 +6,7 @@ const CategoryService = require('./CategoryService')
 const sendEmail = require('./sendEmail')
 const SubscriptionService = require('./SubscriptionService')
 const GoogleCloud = require('./GoogleCloud')
+const GoogleAuth = require('./GoogleAuth')
 
 module.exports = {
   mongoDB,
@@ -16,4 +17,5 @@ module.exports = {
   sendEmail,
   SubscriptionService,
   GoogleCloud,
+  GoogleAuth,
 }

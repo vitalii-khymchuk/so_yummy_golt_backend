@@ -15,6 +15,9 @@ router.post(
   bodyValidation(userBodySchemas.signin),
   authCtrl.signin
 )
+
+router.post('/auth/google/signin', authCtrl.signInGoogle)
+
 router.patch(
   '/auth/edit',
   authenticate,
