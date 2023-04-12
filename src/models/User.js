@@ -80,7 +80,8 @@ const signin = Joi.object({
 })
 
 const patchUserData = Joi.object({
-  name: Joi.string().min(2).max(25).required(),
+  name: Joi.string().min(0).max(25),
+  avatar: Joi.any(),
 })
 
 const postShoppingListItem = Joi.object({

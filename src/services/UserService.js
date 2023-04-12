@@ -47,6 +47,14 @@ class UserService {
     return user
   }
 
+  async signInGoogle(userData) {
+    let [user] = await User.find({ email: userData.email })
+    if (!user) {
+      user = await User.create(userData)
+    }
+    return user
+  }
+
   async logout({ id }) {
     await User.findByIdAndUpdate(id, { token: null })
   }
