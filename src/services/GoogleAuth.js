@@ -1,7 +1,7 @@
 const { google } = require('googleapis')
 
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env
-const REDIRECT_URL = 'http://localhost:3001/api/v1/auth/google/callback'
+const { BASE_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env
+const REDIRECT_URL = `${BASE_URL}/api/v1/auth/google/callback`
 const OAuth2 = google.auth.OAuth2
 
 const oauth2Client = new OAuth2(
