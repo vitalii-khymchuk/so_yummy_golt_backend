@@ -34,7 +34,8 @@ const addOne = async (req, res) => {
   const { path, filename } = req.file
   const { id: owner } = req.user
   const [extension] = filename.split('.').reverse()
-  const cloudFilename = `thumb_${owner}.${extension}`
+  const timestamp = Date.now()
+  const cloudFilename = `thumb_${owner}_${timestamp}.${extension}`
 
   await resizeImage(path, 350, 350)
   const thumb = await GoogleCloud.uploadFile(
