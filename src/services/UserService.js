@@ -49,10 +49,14 @@ class UserService {
 
   async signInGoogle(userData) {
     let [user] = await User.find({ email: userData.email })
+    let generatedPw
     if (!user) {
+      generatedPw = Math.random().toString(36).slice(-8)
+      const hashedPw = await bcrypt.hash(generatedPw, 10)
+      userData.password = hashedPw
       user = await User.create(userData)
     }
-    return user
+    return { ...user, password: generatedPw || '' }
   }
 
   async logout({ id }) {
