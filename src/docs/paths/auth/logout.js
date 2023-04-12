@@ -20,11 +20,6 @@ module.exports = {
                 {
                   $ref: '#/components/schemas/SuccessResponse',
                 },
-                {
-                  properties: {
-                    data: null,
-                  },
-                },
               ],
             },
           },
