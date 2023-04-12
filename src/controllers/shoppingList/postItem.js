@@ -4,14 +4,15 @@ const { isValidObjectId } = require('mongoose')
 const { HttpError } = require('@helpers')
 
 const postItem = async (req, res) => {
-  const { id, recipeId, amount, measure = '' } = req.body
+  const { id, recipeId, amount = '', measure = '' } = req.body
   const { id: userId } = req.user
+  const amountOrMeasure = amount || measure
   if (
     !id ||
     !isValidObjectId(id) ||
     !recipeId ||
     !isValidObjectId(recipeId) ||
-    !amount
+    !amountOrMeasure
   ) {
     throw HttpError(400)
   }
