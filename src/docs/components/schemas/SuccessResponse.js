@@ -12,11 +12,6 @@ module.exports = {
         description: 'Server response message',
         example: 'success',
       },
-      data: {
-        description:
-          'An object or array of objects in the response from the server',
-        items: {},
-      },
     },
   },
 }

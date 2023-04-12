@@ -44,7 +44,6 @@ module.exports = {
                     code: {
                       example: 201,
                     },
-                    data: null,
                   },
                 },
               ],
