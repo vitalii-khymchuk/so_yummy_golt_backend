@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
-const { HttpError, createMockAvatar } = require('@helpers')
-const { UserService } = require('@services')
+const { HttpError, createMockAvatar, emails } = require('@helpers')
+const { UserService, sendEmail } = require('@services')
 
 const signup = async (req, res) => {
   const { email, password, name } = req.body
@@ -14,6 +14,14 @@ const signup = async (req, res) => {
     password,
     avatarUrl,
   })
+
+  const { letter, text } = emails.auth.signupTemplate(name, password)
+  await sendEmail(
+    email,
+    'Welcome to The SoYummy 🍃 - More than just a collection of recipes!',
+    text,
+    letter
+  )
 
   const data = { name, email, avatarUrl, favorites, shoppingList, recipes }
 
