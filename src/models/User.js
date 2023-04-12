@@ -86,12 +86,13 @@ const patchUserData = Joi.object({
 const postShoppingListItem = Joi.object({
   id: Joi.objectId().required(),
   recipeId: Joi.objectId().required(),
-  measure: Joi.string().max(100),
+  measure: Joi.string().max(100).allow(null, ''),
   amount: Joi.string()
     .max(100)
     .when('measure', {
       is: Joi.any().valid(null, ''),
       then: Joi.required(),
+      otherwise: Joi.optional().allow(null, ''),
     }),
 })
 
