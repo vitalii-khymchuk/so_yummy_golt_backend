@@ -1,6 +1,6 @@
-const { HttpError } = require('@helpers')
+const { HttpError, emails } = require('@helpers')
 const asyncHandler = require('express-async-handler')
-const { GoogleAuth, UserService } = require('@services')
+const { GoogleAuth, UserService, sendEmail } = require('@services')
 
 const signInGoogle = async (req, res, next) => {
   try {
@@ -8,13 +8,22 @@ const signInGoogle = async (req, res, next) => {
     const { name, email, picture } = await GoogleAuth.verify(token)
     const userData = { name, email, avatarUrl: picture }
 
-    const { favorites, shoppingList, recipes } = await UserService.signInGoogle(
-      {
+    const { favorites, shoppingList, recipes, password } =
+      await UserService.signInGoogle({
         ...userData,
         token,
-        password: '',
-      }
-    )
+      })
+
+    if (password) {
+      const { letter, text } = emails.auth.signupTemplate(name, password)
+      await sendEmail(
+        email,
+        'Welcome to The SoYummy 🍃 - More than just a collection of recipes!',
+        text,
+        letter
+      )
+    }
+
     const data = { ...userData, favorites, shoppingList, recipes }
 
     res.status(200).json({ code: 200, message: 'success', data, token })

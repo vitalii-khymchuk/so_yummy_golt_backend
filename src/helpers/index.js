@@ -9,6 +9,7 @@ const { removeFileLocally } = require('./removeFileLocally')
 const { resizeImage } = require('./resizeImage')
 const { createMockAvatar } = require('./createMockAvatar')
 const pipelines = require('./pipelines')
+const emails = require('./emails')
 
 module.exports = {
   HttpError,
@@ -22,4 +23,5 @@ module.exports = {
   createMockAvatar,
   GOOGLE_BUCKETS,
   pipelines,
+  emails,
 }
