@@ -55,11 +55,12 @@ class UserService {
       const hashedPw = await bcrypt.hash(generatedPw, 10)
       userData.password = hashedPw
       user = await User.create(userData)
+      user.password = generatedPw
     } else {
       user = await User.findByIdAndUpdate(user._id, { token: userData.token })
       user.password = ''
     }
-    return { ...user, password: generatedPw || '' }
+    return { ...user }
   }
 
   async logout({ id }) {
