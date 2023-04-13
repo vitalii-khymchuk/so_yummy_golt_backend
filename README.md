@@ -19,5 +19,5 @@ The project was implemented by two back-end developers. Each of us worked on per
   </a>
 </p>
 
-- [**Vitalii Khymchuk**: Back-end developer](https://github.com/vitalii-khymchuk
+- [**Vitalii Khymchuk**: Back-end developer](https://github.com/vitalii-khymchuk)
 - [**Vlad Krasovsky**: Back-end developer](https://github.com/vladkrasovsky)
