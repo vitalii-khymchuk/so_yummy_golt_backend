@@ -8,11 +8,12 @@ const signInGoogle = async (req, res, next) => {
     const { name, email, picture } = await GoogleAuth.verify(token)
     const userData = { name, email, avatarUrl: picture }
 
-    const { favorites, shoppingList, recipes, password } =
-      await UserService.signInGoogle({
-        ...userData,
-        token,
-      })
+    const {
+      _doc: { favorites, shoppingList, recipes, password, avatarUrl },
+    } = await UserService.signInGoogle({
+      ...userData,
+      token,
+    })
 
     if (password) {
       const { letter, text } = emails.auth.signupTemplate(name, password)
@@ -23,8 +24,7 @@ const signInGoogle = async (req, res, next) => {
         letter
       )
     }
-
-    const data = { ...userData, favorites, shoppingList, recipes }
+    const data = { ...userData, avatarUrl, favorites, shoppingList, recipes }
 
     res.status(200).json({ code: 200, message: 'success', data, token })
   } catch (error) {
