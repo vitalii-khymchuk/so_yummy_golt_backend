@@ -16,9 +16,9 @@ const authenticate = async (req, res, next) => {
     next()
   } catch (e) {
     try {
-      const { name, email, picture } = await GoogleAuth.verify(token)
-      const [{ _id }] = await User.find({ email })
-      req.user = { name, email, avatarUrl: picture, id: _id }
+      const { name, email } = await GoogleAuth.verify(token)
+      const [{ _id, avatarUrl }] = await User.find({ email })
+      req.user = { name, email, avatarUrl, id: _id }
       next()
     } catch (error) {
       console.log('error in authenticate', error)
