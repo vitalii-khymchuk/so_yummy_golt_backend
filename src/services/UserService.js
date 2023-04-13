@@ -57,6 +57,7 @@ class UserService {
       user = await User.create(userData)
     } else {
       user = await User.findByIdAndUpdate(user._id, { token: userData.token })
+      user.password = ''
     }
     return { ...user, password: generatedPw || '' }
   }
