@@ -7,7 +7,7 @@ const OAuth2 = google.auth.OAuth2
 const oauth2Client = new OAuth2(
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
-  REDIRECT_URL
+//   REDIRECT_URL
 )
 
 const verify = async token => {
