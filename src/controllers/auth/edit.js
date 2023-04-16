@@ -31,7 +31,10 @@ const edit = async (req, res) => {
     await removeFileLocally(path)
     req.user.avatarUrl = avatar
   }
-  const data = { name: req.user.name, avatarUrl: req.user.avatarUrl }
+  const data = {
+    name: req.user.name,
+    avatarUrl: `${req.user.avatarUrl}?nocache=${Date.now()}`,
+  }
   await UserService.edit(id, data)
 
   res.status(200).json({ code: 200, message: 'success', data })
